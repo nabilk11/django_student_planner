@@ -6,6 +6,7 @@ Planify | Event Details
 {% block content %} 
 <div class="header-container">
     <h1 class="header">{{ event }}</h1>
+    <h3 class="sub-header">{{ event.event_type }} Event</h3>
     <p><a href="{% url 'events' %}">Back to Event List</a> </p>
     <p><a href="{% url 'calendar' %}">Back to Calendar View</a> </p>
 </div>
