@@ -79,8 +79,8 @@ class Calendar(HTMLCalendar):
         return f'<tr> {week} </tr>'   
 
     # create month as a table || filtered by yr&m
-    def formatmonth(self,  withyear=True):
-        events = Event.objects.filter(due_date__year=self.year, due_date__month=self.month)
+    def formatmonth(self, request,  withyear=True):
+        events = Event.objects.filter(user=request.user, due_date__year=self.year, due_date__month=self.month)
 
         cal = f'<table class="calendar" border="0" cellspacing="0" cellpadding="0">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
@@ -100,7 +100,7 @@ class CalendarView(ListView):
         d = get_date(self.request.GET.get('month', None))
         cal = Calendar(d.year, d.month)
         # formatmonth to render calendar as a table
-        html_cal = cal.formatmonth(withyear=True)
+        html_cal = cal.formatmonth(self.request, withyear=True)
         context['calendar'] = mark_safe(html_cal) # in order to render html safe
         # context for month pagination
         context['prev_month'] = prev_month(d)
