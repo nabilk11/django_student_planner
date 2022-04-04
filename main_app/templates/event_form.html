@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Add New Event
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">Add New Event</h1>
+    <p><a href="{% url 'events' %}">Back to Event List</a> </p>
+    <p><a href="{% url 'calendar' %}">Back to Calendar View</a> </p>
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn" type="submit" >Add Task</button>
+</form>
+
+
+{% endblock %}

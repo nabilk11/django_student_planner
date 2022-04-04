@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 
 {% block title %}
-Planify | Home Page
+Planify | My Calendar 
 {% endblock %}
 {% block content %} 
 <div class="header-container">
@@ -14,7 +14,7 @@ Planify | Home Page
         <div class="calendar-btns">
             <a href="{% url 'calendar' %}?{{ prev_month }}" class="btn"><button class="btn" >Previous Month</button></a>
             <a href="{% url 'calendar' %}?{{ next_month }}" class="btn"><button class="btn" >Next Month</button></a>
-            <button class="btn">Add Event</button>
+            <a href="{% url 'event_create' %}"><button class="btn">Add Event</button></a>
         </div>
         {{ calendar }}
     </div>

@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from .models import Event
 from datetime import datetime, timedelta, date
 from calendar import HTMLCalendar, month
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+
 from django.utils.safestring import mark_safe
 import calendar
 
@@ -109,6 +112,16 @@ class EventDetail(DetailView):
     context_object_name = 'event'
     
 
+# Event Create View - may have to alter with datetime of due date
+class EventCreate(CreateView):
+    model = Event
+    template_name = 'event_form.html'
+    fields = ['title', 'description', 'completed', 'due_date']
+    success_url = reverse_lazy('calendar')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(EventCreate, self).form_valid(form)
 
 
 
