@@ -1,6 +1,4 @@
-from dataclasses import fields
-from pyexpat import model
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from .models import Event
@@ -9,11 +7,46 @@ from calendar import HTMLCalendar, month
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-
 from django.utils.safestring import mark_safe
 import calendar
+# Auth Imports
+from django.contrib.auth.views import LoginView
+# Login Mixin - passed into views to restrict
+from django.contrib.auth.mixins import LoginRequiredMixin
+# Register imports
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 # Create your views here.
+
+# AUTH VIEWS - using class based views, may switch to function based in some instances
+class Login(LoginView):
+    template_name = 'login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('calendar')
+
+# REGISTER VIEW
+class Register(FormView):
+    template_name = 'register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('calendar')
+
+    # form validation
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(Register, self).form_valid(form)
+
+    # prevent logged in user from accessing register page
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('calendar')
+        return super(Register, self).get(*args, **kwargs)
+
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -46,8 +79,8 @@ class Calendar(HTMLCalendar):
         return f'<tr> {week} </tr>'   
 
     # create month as a table || filtered by yr&m
-    def formatmonth(self,  withyear=True):
-        events = Event.objects.filter(due_date__year=self.year, due_date__month=self.month)
+    def formatmonth(self, request,  withyear=True):
+        events = Event.objects.filter(user=request.user, due_date__year=self.year, due_date__month=self.month)
 
         cal = f'<table class="calendar" border="0" cellspacing="0" cellpadding="0">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
@@ -67,7 +100,7 @@ class CalendarView(ListView):
         d = get_date(self.request.GET.get('month', None))
         cal = Calendar(d.year, d.month)
         # formatmonth to render calendar as a table
-        html_cal = cal.formatmonth(withyear=True)
+        html_cal = cal.formatmonth(self.request, withyear=True)
         context['calendar'] = mark_safe(html_cal) # in order to render html safe
         # context for month pagination
         context['prev_month'] = prev_month(d)
