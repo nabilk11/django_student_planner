@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from .models import Event
-from datetime import datetime, timedelta
-from calendar import HTMLCalendar
+from datetime import datetime, timedelta, date
+from calendar import HTMLCalendar, month
 from django.views.generic import ListView
 from django.utils.safestring import mark_safe
+import calendar
 
 # Create your views here.
 
@@ -15,6 +16,7 @@ class About(TemplateView):
     template_name = "about.html"  
 
 # Calendar Utility - May move to separate file later?
+# currently adds event to calendar based on created_at timing, possibly change to due_date?
 class Calendar(HTMLCalendar):
     def __init__(self, year=None, month=None):
         self.year = year
@@ -56,12 +58,14 @@ class CalendarView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # today's date
-        d = get_date(self.request.GET.get('day', None))
-
+        d = get_date(self.request.GET.get('month', None))
         cal = Calendar(d.year, d.month)
         # formatmonth to render calendar as a table
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal) # in order to render html safe
+        # context for month pagination
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
         return context
 
 def get_date(req_day):
@@ -69,6 +73,21 @@ def get_date(req_day):
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
     return datetime.today()
+
+# next/previous month methods
+def prev_month(d):
+    first = d.replace(day=1)
+    prev_month = first - timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+def next_month(d):
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_month = last + timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
+
 
 
 

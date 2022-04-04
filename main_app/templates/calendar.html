@@ -6,10 +6,17 @@ Planify | Home Page
 {% block content %} 
 <div class="header-container">
     <h1 class="header">My Calendar</h1>
-    <button class="btn">Add Event</button>
     <p><a href="">Back to Profile</a> </p>
 </div>
-
-
-{{ calendar }}
+<div class="cal-container">
+    
+    <div class="cal-wrapper">
+        <div class="calendar-btns">
+            <a href="{% url 'calendar' %}?{{ prev_month }}" class="btn"><button class="btn" >Previous Month</button></a>
+            <a href="{% url 'calendar' %}?{{ next_month }}" class="btn"><button class="btn" >Next Month</button></a>
+            <button class="btn">Add Event</button>
+        </div>
+        {{ calendar }}
+    </div>
+</div>
 {% endblock %}
