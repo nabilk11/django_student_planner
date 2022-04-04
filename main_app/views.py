@@ -9,11 +9,27 @@ from calendar import HTMLCalendar, month
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-
 from django.utils.safestring import mark_safe
 import calendar
+# Auth Imports
+from django.contrib.auth.views import LoginView
+# Login Mixin - passed into views to restrict
+from django.contrib.auth.mixins import LoginRequiredMixin
+# Register imports
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 
 # Create your views here.
+
+# AUTH VIEWS - using class based views, may switch to function based in some instances
+class Login(LoginView):
+    template_name = 'login.html'
+    fields = '__all__'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('calendar')
+
 
 class Home(TemplateView):
     template_name = "home.html"
