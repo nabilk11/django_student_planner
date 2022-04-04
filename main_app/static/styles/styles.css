@@ -1,0 +1,60 @@
+
+
+
+/* GENERAL STYLES */
+
+
+.header {
+    color: darkolivegreen;
+    text-shadow: 1px 1px 1px black;
+
+}
+
+
+
+/* CALENDAR PAGE STYLING */
+.calendar {
+    width: 98%;
+    margin: auto;
+    font-size: 13px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.calendar tr, .calendar td {
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.calendar th {
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.calendar td {
+    width: 200px;
+    height: 150px;
+    padding: 20px 0px 0px 5px;
+}
+
+.month {
+    font-size: 25px;
+}
+
+.date {
+    font-size: 16px;
+}
+
+ul {
+    height: 100%;
+    padding: 0px 5px 0px 20px;
+}
+
+li {
+    font-size: 1.25em;
+}
+
+a {
+    color: cornflowerblue;
+}
