@@ -132,6 +132,14 @@ class EventUpdate(UpdateView):
     fields = ['title', 'description', 'completed', 'due_date', 'event_type']
     success_url = reverse_lazy('calendar')
 
+class EventDelete(DeleteView):
+    model = Event
+    template_name = 'event_confirm_delete.html'
+    context_object_name = 'event'
+    success_url = reverse_lazy('calendar')
+
+    
+
 
 
 

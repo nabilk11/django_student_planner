@@ -21,6 +21,7 @@ Planify | Event Details
     {% endif %}
     <div class="event-btns">
         <a href="{% url 'event_update' event.id%}"><button class="btn" >Edit</button></a>
+        <a href="{% url 'event_delete' event.id%}"><button class="btn" >Delete</button></a>
     </div>
 </div>
 
