@@ -7,7 +7,12 @@
 .header {
     color: darkolivegreen;
     text-shadow: 1px 1px 1px black;
+}
 
+.sub-header {
+    color: darkolivegreen;
+    text-shadow: .5px .5px .5px black;
+    background-color: blanchedalmond;
 }
 
 
@@ -58,3 +63,18 @@ li {
 a {
     color: cornflowerblue;
 }
+
+/* ALL EVENTS LIST */
+tr .event-list-link {
+    padding-right: 1em;
+    color: crimson;
+}
+
+tr .event-list-title {
+    padding-right: 2em;
+    color: dodgerblue;
+    text-decoration: none;
+    font-size: larger;
+    text-shadow: .5px .5px .5px black;
+}
+
