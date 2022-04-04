@@ -17,7 +17,9 @@ Planify | Event List
     </tr>
     {% for event in events %}
     <tr>
-        <td><a href="">{{ event.title }}</a></td>
+        <td><a href="{% url 'event_detail' event.id %}">{{ event.title }}</a></td>
+        <td><a href="{% url 'event_detail' event.id %}">View</a></td>
+
 
     </tr>
     {% empty %}

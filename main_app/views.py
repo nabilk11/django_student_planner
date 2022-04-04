@@ -4,6 +4,7 @@ from .models import Event
 from datetime import datetime, timedelta, date
 from calendar import HTMLCalendar, month
 from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.utils.safestring import mark_safe
 import calendar
 
@@ -101,7 +102,13 @@ class EventList(ListView):
 
         return context
 
-        
+# Event Detail View - Ind Event Details
+class EventDetail(DetailView):
+    model = Event
+    template_name = 'event_detail.html'
+    context_object_name = 'event'
+    
+
 
 
 

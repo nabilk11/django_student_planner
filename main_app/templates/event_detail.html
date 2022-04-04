@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Event Details
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">{{ event }}</h1>
+    <p><a href="{% url 'events' %}">Back to Event List</a> </p>
+    <p><a href="{% url 'calendar' %}">Back to Calendar View</a> </p>
+</div>
+
+<div class="event-container">
+    <h4>{{ event.description }}</h4>
+    <p class="event-txt-item">Created at: {{event.created_at}}</p>
+    <p class="event-txt-item"><strong>Due Date: {{event.due_date}}</strong></p>
+    {% if event.completed == True  %}
+    <p class="event-txt-item" style="color: green;" ><strong>Status: Completed!</strong></p>
+    {% else  %}
+    <p class="event-txt-item" style="color: red;"  > <strong>Status: Incomplete!</strong></p>
+    {% endif %}
+</div>
+
+{% endblock %}
