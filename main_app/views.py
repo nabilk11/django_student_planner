@@ -1,6 +1,4 @@
-from dataclasses import fields
-from pyexpat import model
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 from .models import Event
@@ -29,6 +27,25 @@ class Login(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('calendar')
+
+# REGISTER VIEW
+class Register(FormView):
+    template_name = 'register.html'
+    form_class = UserCreationForm
+    success_url = reverse_lazy('calendar')
+
+    # form validation
+    def form_valid(self, form):
+        user = form.save()
+        if user is not None:
+            login(self.request, user)
+        return super(Register, self).form_valid(form)
+
+    # prevent logged in user from accessing register page
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect('calendar')
+        return super(Register, self).get(*args, **kwargs)
 
 
 class Home(TemplateView):
