@@ -15,6 +15,7 @@ Planify | Edit Event
 
     <button class="btn" type="submit" >Update Task</button>
 </form>
+<a href="{% url 'event_delete' event.id %}"><button class="btn-delete" >Delete Instead</button></a>
 
 
 {% endblock %}

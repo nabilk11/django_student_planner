@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 # Event Model
 TYPE_OPTIONS = (
-    ("W", "WORK"),
-    ("S", "SCHOOL"),
-    ("P", "PERSONAL"),
+    ("Work", "WORK"),
+    ("School","SCHOOL"),
+    ("Personal","PERSONAL"),
 )
 
 class Event(models.Model):

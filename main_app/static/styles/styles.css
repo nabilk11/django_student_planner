@@ -7,12 +7,22 @@
 .header {
     color: darkolivegreen;
     text-shadow: 1px 1px 1px black;
+}
 
+.sub-header {
+    color: darkseagreen;
+    text-shadow: .5px .5px .5px black;
 }
 
 
 
 /* CALENDAR PAGE STYLING */
+.calendar-btns {
+    margin-bottom: 3.5vh;
+    margin-left: 2vw;
+}
+
+
 .calendar {
     width: 98%;
     margin: auto;
@@ -58,3 +68,18 @@ li {
 a {
     color: cornflowerblue;
 }
+
+/* ALL EVENTS LIST */
+tr .event-list-link {
+    padding-right: 1em;
+    color: crimson;
+}
+
+tr .event-list-title {
+    padding-right: 2em;
+    color: dodgerblue;
+    text-decoration: none;
+    font-size: larger;
+    text-shadow: .5px .5px .5px black;
+}
+

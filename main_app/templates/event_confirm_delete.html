@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Delete Event
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">{{ event }}</h1>
+    <h1 class="sub-header">Are you sure you want to delete this event?</h1>
+    <p><a href="{% url 'events' %}">Event List</a> </p>
+    <p><a href="{% url 'calendar' %}">Calendar View</a> </p>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">YES - DELETE!</button>
+    <div>
+        <a href="{% url 'event_detail' event.id %}" class="cancel">Cancel</a>
+        <a href="{% url 'event_update' event.id %}" class="update">Edit Instead?</a>
+    </div>
+
+</form>
+{% endblock %}
