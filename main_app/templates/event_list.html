@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Event List
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">My Events</h1>
+    <p><a href="">Back to Profile</a> </p>
+</div>
+
+<table>
+    <tr>
+        <th class="sub-header" style="font-size: larger;">Events</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {% for event in events %}
+    <tr>
+        <td><a href="">{{ event.title }}</a></td>
+
+    </tr>
+    {% empty %}
+    <p>You have no current events to display!</p>
+    {% endfor %}
+</table>
+
+{% endblock %}

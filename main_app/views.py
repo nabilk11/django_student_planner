@@ -27,7 +27,7 @@ class Calendar(HTMLCalendar):
         daily_events = events.filter(created_at__day=day)
         d = ''
         for event in daily_events:
-            d += f'<li> {event.title} </li>'
+            d += f'<li><a href="/events/{event.id}" > {event.title} </a></li>'
         if day != 0:
             return f'<td><span class="date">{day}</span><ul>{d}</ul></td>'
         return '<td></td>'
@@ -88,6 +88,20 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
+# Events List View - for user's event list
+class EventList(ListView):
+    model = Event
+    template_name = 'event_list.html'
+    context_object_name = 'events'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['events'] = context['events'].filter(user = self.request.user)
+        context['count'] = context['events'].filter(completed = False).count()
+
+        return context
+
+        
 
 
 
