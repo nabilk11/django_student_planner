@@ -19,6 +19,9 @@ Planify | Event Details
     {% else  %}
     <p class="event-txt-item" style="color: red;"  > <strong>Status: Incomplete!</strong></p>
     {% endif %}
+    <div class="event-btns">
+        <a href="{% url 'event_update' event.id%}"><button class="btn" >Edit</button></a>
+    </div>
 </div>
 
 {% endblock %}

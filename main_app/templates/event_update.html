@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Edit Event
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">Edit Event</h1>
+    <p><a href="{% url 'event_detail' event.id %}">Cancel</a> </p>
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button class="btn" type="submit" >Update Task</button>
+</form>
+
+
+{% endblock %}

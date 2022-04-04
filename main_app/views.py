@@ -1,3 +1,5 @@
+from dataclasses import fields
+from pyexpat import model
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
@@ -116,18 +118,19 @@ class EventDetail(DetailView):
 class EventCreate(CreateView):
     model = Event
     template_name = 'event_form.html'
-    fields = ['title', 'description', 'completed', 'due_date']
+    fields = ['title', 'description', 'completed', 'due_date', 'event_type']
     success_url = reverse_lazy('calendar')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(EventCreate, self).form_valid(form)
 
-
-
-
-
-
+# Update/Edit Event
+class EventUpdate(UpdateView):
+    model = Event
+    template_name = 'event_update.html'
+    fields = ['title', 'description', 'completed', 'due_date', 'event_type']
+    success_url = reverse_lazy('calendar')
 
 
 
