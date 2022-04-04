@@ -17,6 +17,12 @@
 
 
 /* CALENDAR PAGE STYLING */
+.calendar-btns {
+    margin-bottom: 3.5vh;
+    margin-left: 2vw;
+}
+
+
 .calendar {
     width: 98%;
     margin: auto;

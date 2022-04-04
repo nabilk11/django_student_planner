@@ -30,7 +30,7 @@ class Calendar(HTMLCalendar):
         super(Calendar, self).__init__()
 # create day as table data || events filtered by days
     def formatday(self, day, events):
-        daily_events = events.filter(created_at__day=day)
+        daily_events = events.filter(due_date__day=day)
         d = ''
         for event in daily_events:
             d += f'<li><a href="/events/{event.id}" > {event.title} </a></li>'
@@ -47,7 +47,7 @@ class Calendar(HTMLCalendar):
 
     # create month as a table || filtered by yr&m
     def formatmonth(self,  withyear=True):
-        events = Event.objects.filter(created_at__year=self.year, created_at__month=self.month)
+        events = Event.objects.filter(due_date__year=self.year, due_date__month=self.month)
 
         cal = f'<table class="calendar" border="0" cellspacing="0" cellpadding="0">\n'
         cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
@@ -138,7 +138,7 @@ class EventDelete(DeleteView):
     context_object_name = 'event'
     success_url = reverse_lazy('calendar')
 
-    
+
 
 
 
