@@ -66,7 +66,7 @@ class Calendar(HTMLCalendar):
         daily_events = events.filter(due_date__day=day)
         d = ''
         for event in daily_events:
-            d += f'<li><a href="/events/{event.id}" > {event.title} </a></li>'
+            d += f'<li><a class="cal-item" href="/events/{event.id}" > {event.title} </a></li>'
         if day != 0:
             return f'<td><span class="date">{day}</span><ul>{d}</ul></td>'
         return '<td></td>'
@@ -172,7 +172,7 @@ class EventDelete(DeleteView):
     success_url = reverse_lazy('calendar')
 
 
-
+# Collaborators
 
 
 
