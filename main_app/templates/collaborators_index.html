@@ -1,0 +1,39 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | All Collaborators
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">My Collaborators</h1>
+    <p>Collaborators are members of your team, classmates, and friends. You can add Collaborators to your events or simply keep them in DB for quick access to contact information.</p>
+    <a href="">Back to Profile</a>
+    <a href="{% url 'add_collaborator' %}"><button class="btn">Add New Collaborator</button></a>
+</div>
+
+<table>
+    <tr>
+        <th class="sub-header" style="font-size: larger;">Collaborators</th>
+        <th class="sub-header" style="font-size: larger;">Role</th>
+        <th class="sub-header" style="font-size: larger;">Email</th>
+        <th class="sub-header" style="font-size: larger;">Phone</th>
+        <th class="sub-header" style="font-size: larger;"></th>
+        <th class="sub-header" style="font-size: larger;"></th>
+    </tr>
+    {% for c in collaborators %}
+    <tr>
+        <td><h4 class="event-list-title">{{ c.name }}</h4></td>
+        <td><p class="event-list-title">{{ c.role }}</p></td>
+        <td><p class="event-list-title">{{ c.email }}</p></td>
+        <td><p class="event-list-title">{{ c.phone_number }}</p></td>
+        <td><a class="event-list-link" href="{% url 'add_collaborator' %}">Edit Info</a></td>
+        <td><a class="event-list-link" href="{% url 'add_collaborator' %}">Delete</a></td>
+
+
+    </tr>
+    {% empty %}
+    <p>You have no Collaborators to display!</p>
+    {% endfor %}
+</table>
+
+{% endblock %}

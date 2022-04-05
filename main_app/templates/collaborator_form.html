@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Add New Collaborator
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">Add a New Collaborator to Your Team!</h1>
+    <p><a href="{% url 'collaborators' %}">Back to Collaborator List</a> </p>
+    <p><a href="{% url 'calendar' %}">Calendar View</a> </p>
+</div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_table }}
+
+    <button class="btn" type="submit" >Add Collaborator</button>
+</form>
+
+
+{% endblock %}

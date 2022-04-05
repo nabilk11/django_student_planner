@@ -1,7 +1,9 @@
+from dataclasses import fields
+from pyexpat import model
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
-from .models import Event
+from .models import Collaborator, Event
 from datetime import datetime, timedelta, date
 from calendar import HTMLCalendar, month
 from django.views.generic import ListView
@@ -151,7 +153,7 @@ class EventDetail(DetailView):
 class EventCreate(CreateView):
     model = Event
     template_name = 'event_form.html'
-    fields = ['title', 'description', 'completed', 'due_date', 'event_type']
+    fields = ['title', 'description', 'completed', 'due_date', 'event_type', 'collaborators']
     success_url = reverse_lazy('calendar')
 
     def form_valid(self, form):
@@ -162,7 +164,7 @@ class EventCreate(CreateView):
 class EventUpdate(UpdateView):
     model = Event
     template_name = 'event_update.html'
-    fields = ['title', 'description', 'completed', 'due_date', 'event_type']
+    fields = ['title', 'description', 'completed', 'due_date', 'event_type', 'collaborators']
     success_url = reverse_lazy('calendar')
 
 class EventDelete(DeleteView):
@@ -173,6 +175,22 @@ class EventDelete(DeleteView):
 
 
 # Collaborators
+class CollaboratorsIndex(ListView):
+    model = Collaborator
+    template_name = 'collaborators_index.html'
+    context_object_name = 'collaborators'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['collaborators'] = context['collaborators'].filter(user = self.request.user)
+        return context
+
+# AddCollaborator
+class AddCollaborator(CreateView):
+    model = Collaborator
+    fields = '__all__'
+    template_name = 'collaborator_form.html'
+    success_url = reverse_lazy('collaborators')
 
 
 
