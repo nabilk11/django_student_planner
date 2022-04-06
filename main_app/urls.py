@@ -21,6 +21,9 @@ urlpatterns = [
     # Collaborators
     path('collaborators/', views.CollaboratorsIndex.as_view(), name='collaborators'),
     path('collaborators/new/', views.AddCollaborator.as_view(), name='add_collaborator'),
+    path('collaborators/<int:pk>/', views.CollaboratorDetail.as_view(), name='collaborator_detail'),
+  #  path('collaborators/<int:pk>/edit/', views.CollaboratorUpdate.as_view(), name='collaborator_update'),
+  #  path('collaborators/<int:pk>/delete/', views.CollaboratorDelete.as_view(), name='collaborator_delete'),
 
 
 

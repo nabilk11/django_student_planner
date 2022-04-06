@@ -192,5 +192,9 @@ class AddCollaborator(CreateView):
     template_name = 'collaborator_form.html'
     success_url = reverse_lazy('collaborators')
 
-
+# Collaborator Detail View - Ind Event Details
+class CollaboratorDetail(DetailView):
+    model = Collaborator
+    template_name = 'collaborator_detail.html'
+    context_object_name = 'collaborator'
 

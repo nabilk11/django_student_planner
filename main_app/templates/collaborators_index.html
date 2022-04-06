@@ -22,7 +22,7 @@ Planify | All Collaborators
     </tr>
     {% for c in collaborators %}
     <tr>
-        <td><h4 class="event-list-title">{{ c.name }}</h4></td>
+        <td><a href="{% url 'collaborator_detail' c.pk%}"><h4 class="event-list-title">{{ c.name }}</h4></a></td>
         <td><p class="event-list-title">{{ c.role }}</p></td>
         <td><p class="event-list-title">{{ c.email }}</p></td>
         <td><p class="event-list-title">{{ c.phone_number }}</p></td>

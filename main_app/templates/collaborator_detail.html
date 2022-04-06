@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Event Details
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">{{ collaborator.name }}</h1>
+    <p><a href="{% url 'events' %}">Back to Event List</a> </p>
+    <p><a href="{% url 'calendar' %}">Back to Calendar View</a> </p>
+</div>
+
+<table style="margin-top: 2em;" >
+    <tr>
+        <th class="sub-header" style="font-size: larger;">Role</th>
+        <th class="sub-header" style="font-size: larger;">Email</th>
+        <th class="sub-header" style="font-size: larger;">Phone</th>
+        <th class="sub-header" style="font-size: larger;"></th>
+        <th class="sub-header" style="font-size: larger;"></th>
+    </tr>
+    <tr>
+        <td><p class="event-list-title">{{ collaborator.role }}</p></td>
+        <td><p class="event-list-title">{{ collaborator.email }}</p></td>
+        <td><p class="event-list-title">{{ collaborator.phone_number }}</p></td>
+        <td><a class="event-list-link" href="{% url 'add_collaborator' %}">Edit Info</a></td>
+        <td><a class="event-list-link" href="{% url 'add_collaborator' %}">Delete</a></td>
+    </tr>
+</table>
+
+{% endblock %}
