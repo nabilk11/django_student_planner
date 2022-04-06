@@ -4,11 +4,11 @@
 /* GENERAL STYLES */
 
 body {
-    background-color: slategrey;
+    background-color: rgb(73, 76, 79);
 }
 
 .header {
-    color: darkolivegreen;
+    color: seagreen;
     text-shadow: 1px 1px 1px black;
 }
 
@@ -17,6 +17,107 @@ body {
     text-shadow: .5px .5px .5px black;
 }
 
+
+/* BUTTON STYLING */ 
+
+
+.btn-add {
+    background-color: orange;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 8rem;
+    height: 2rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+    text-shadow: .5px .5px .5px black;
+
+}
+
+
+.btn-one {
+    background-color: cornflowerblue;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 8rem;
+    height: 2rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+    text-shadow: .5px .5px .5px black;
+
+}
+
+.btn-one:hover {
+    transform: scale(1.08);
+    transition: .3s all ease;
+}
+
+.btn-add:hover {
+    transform: scale(1.08);
+    transition: .3s all ease;
+}
+
+.btn-sm {
+    background-color: cornflowerblue;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 4rem;
+    height: 1.5rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: .5px .5px .5px black;
+
+
+}
+
+
+.btn-sm-del {
+    background-color: crimson;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 4rem;
+    height: 1.5rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: .5px .5px .5px black;
+
+}
+
+
+
+/* NAVBAR STYLING */
+nav {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    top: 0;
+    border-radius: 10px;
+    display: flex; 
+    align-items: center; 
+    justify-content: space-around;
+}
+
+.nav-logo {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: seagreen;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: bold;
+
+
+
+}
 
 
 /* CALENDAR PAGE STYLING */
@@ -69,7 +170,14 @@ li {
 }
 
 a {
-    color: cornflowerblue;
+    color: rgb(191, 211, 247);
+}
+
+.cal-item {
+    color: orange;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 /* ALL EVENTS LIST */
@@ -80,7 +188,7 @@ tr .event-list-link {
 
 tr .event-list-title {
     padding-right: 2em;
-    color: dodgerblue;
+    color: whitesmoke;
     text-decoration: none;
     font-size: larger;
     text-shadow: .5px .5px .5px black;
