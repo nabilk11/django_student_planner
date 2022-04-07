@@ -10,19 +10,28 @@ Planify | Event Details
     <p><a href="{% url 'events' %}">Back to Event List</a> </p>
     <p><a href="{% url 'calendar' %}">Back to Calendar View</a> </p>
 </div>
-
 <div class="event-container">
     <h4>{{ event.description }}</h4>
-    <p class="event-txt-item">Created at: {{event.created_at}}</p>
-    <p class="event-txt-item"><strong>Due Date: {{event.due_date}}</strong></p>
+    <h4>Collaborators:</h4>
+    {% for c in event.collaborators.all %}
+    <div class="collaborators">
+        <a href="{% url 'collaborator_detail' c.id %}"><h4 class="event-txt-item">{{ c.name }}</h4></a>
+        <span class="collaborator-info">{{ c.role }}</span>
+    </div>
+    {% empty %}
+        <div>You have no collaborators for this event.</div>
+    {% endfor %}
+    <hr/>
+    <p class="event-txt-item">Created at: {{ event.created_at }}</p>
+    <p class="event-txt-item"><strong>Due Date: {{ event.due_date }}</strong></p>
     {% if event.completed == True  %}
     <p class="event-txt-item" style="color: green;" ><strong>Status: Completed!</strong></p>
     {% else  %}
     <p class="event-txt-item" style="color: red;"  > <strong>Status: Incomplete!</strong></p>
     {% endif %}
     <div class="event-btns">
-        <a href="{% url 'event_update' event.id%}"><button class="btn" >Edit</button></a>
-        <a href="{% url 'event_delete' event.id%}"><button class="btn" >Delete</button></a>
+        <a href="{% url 'event_update' event.id%}"><button class="btn-sm" >Edit</button></a>
+        <a href="{% url 'event_delete' event.id%}"><button class="btn-sm-del" >Delete</button></a>
     </div>
 </div>
 

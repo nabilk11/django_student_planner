@@ -6,15 +6,15 @@ Planify | My Calendar
 {% block content %} 
 <div class="header-container">
     <h1 class="header">{{ user }}'s Calendar</h1>
-    <p><a href="{% url 'events' %}">Back to Profile</a> </p>
+    <p><a href="{% url 'events' %}">Events List View</a> </p>
 </div>
 <div class="cal-container">
     
     <div class="cal-wrapper">
         <div class="calendar-btns">
-            <a href="{% url 'calendar' %}?{{ prev_month }}" class="btn"><button class="btn" >Previous Month</button></a>
-            <a href="{% url 'calendar' %}?{{ next_month }}" class="btn"><button class="btn" >Next Month</button></a>
-            <a href="{% url 'event_create' %}"><button class="btn">Add Event</button></a>
+            <a href="{% url 'calendar' %}?{{ prev_month }}"><button class="btn-one" >Previous Month</button></a>
+            <a href="{% url 'calendar' %}?{{ next_month }}"><button class="btn-one" >Next Month</button></a>
+            <a href="{% url 'event_create' %}"><button class="btn-add">Add Event</button></a>
         </div>
         {{ calendar }}
     </div>

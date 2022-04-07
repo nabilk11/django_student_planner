@@ -6,11 +6,11 @@ Planify | Event List
 {% block content %} 
 <div class="header-container">
     <h1 class="header">My Events</h1>
-    <p><a href="">Back to Profile</a> </p>
-    <a href="{% url 'event_create' %}"><button class="btn">Add Event</button></a>
+    <p><a href="{% url 'calendar' %}">Calendar View</a> </p>
+    <a href="{% url 'event_create' %}"><button class="btn-add">Add Event</button></a>
 </div>
 
-<table>
+<table style="margin-top: 2em;" >
     <tr>
         <th class="sub-header" style="font-size: larger;">Events</th>
         <th></th>
@@ -19,9 +19,9 @@ Planify | Event List
     {% for event in events %}
     <tr>
         <td><a class="event-list-title" href="{% url 'event_detail' event.id %}">{{ event.title }}</a></td>
-        <td><a class="event-list-link" href="{% url 'event_detail' event.id %}">View</a></td>
-        <td><a class="event-list-link" href="{% url 'event_update' event.id %}">Edit</a></td>
-        <td><a class="event-list-link" href="{% url 'event_delete' event.id %}">Delete</a></td>
+        <td><a href="{% url 'event_detail' event.id %}"><button class="btn-sm-g" >View</button></a></td>
+        <td><a href="{% url 'event_update' event.id %}"><button class="btn-sm" >Edit</button></a></td>
+        <td><a href="{% url 'event_delete' event.id %}"><button class="btn-sm-del" >Delete</button></a></td>
 
 
     </tr>

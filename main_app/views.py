@@ -1,7 +1,9 @@
+from dataclasses import fields
+from pyexpat import model
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
-from .models import Event
+from .models import Collaborator, Event
 from datetime import datetime, timedelta, date
 from calendar import HTMLCalendar, month
 from django.views.generic import ListView
@@ -66,7 +68,7 @@ class Calendar(HTMLCalendar):
         daily_events = events.filter(due_date__day=day)
         d = ''
         for event in daily_events:
-            d += f'<li><a href="/events/{event.id}" > {event.title} </a></li>'
+            d += f'<li><a class="cal-item" href="/events/{event.id}" > {event.title} </a></li>'
         if day != 0:
             return f'<td><span class="date">{day}</span><ul>{d}</ul></td>'
         return '<td></td>'
@@ -89,7 +91,7 @@ class Calendar(HTMLCalendar):
             cal += f'{self.formatweek(week, events)}\n'
         return cal
 
-# calendar / events view
+# Calendar / Events View
 class CalendarView(ListView):
     model = Event
     template_name = 'calendar.html'
@@ -151,7 +153,7 @@ class EventDetail(DetailView):
 class EventCreate(CreateView):
     model = Event
     template_name = 'event_form.html'
-    fields = ['title', 'description', 'completed', 'due_date', 'event_type']
+    fields = ['title', 'description', 'completed', 'due_date', 'event_type', 'collaborators']
     success_url = reverse_lazy('calendar')
 
     def form_valid(self, form):
@@ -162,7 +164,7 @@ class EventCreate(CreateView):
 class EventUpdate(UpdateView):
     model = Event
     template_name = 'event_update.html'
-    fields = ['title', 'description', 'completed', 'due_date', 'event_type']
+    fields = ['title', 'description', 'completed', 'due_date', 'event_type', 'collaborators']
     success_url = reverse_lazy('calendar')
 
 class EventDelete(DeleteView):
@@ -172,7 +174,45 @@ class EventDelete(DeleteView):
     success_url = reverse_lazy('calendar')
 
 
+# Collaborators
+class CollaboratorsIndex(ListView):
+    model = Collaborator
+    template_name = 'collaborators_index.html'
+    context_object_name = 'collaborators'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['collaborators'] = context['collaborators'].filter(user = self.request.user)
+        return context
 
+# AddCollaborator
+class AddCollaborator(CreateView):
+    model = Collaborator
+    fields = ['name', 'email', 'phone_number', 'role']
+    template_name = 'collaborator_form.html'
+    success_url = reverse_lazy('collaborators')
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AddCollaborator, self).form_valid(form)
+
+# Collaborator Detail View - Ind Event Details
+class CollaboratorDetail(DetailView):
+    model = Collaborator
+    template_name = 'collaborator_detail.html'
+    context_object_name = 'collaborator'
+
+# Collaborator Update
+class CollaboratorUpdate(UpdateView):
+    model = Collaborator
+    template_name = 'collaborator_update.html'
+    fields = ['name', 'email', 'phone_number', 'role']
+    success_url = reverse_lazy('collaborators')
+
+# Collaborator Delete
+class CollaboratorDelete(DeleteView):
+    model = Collaborator
+    template_name = 'collaborator_confirm_delete.html'
+    context_object_name = 'collaborator'
+    success_url = reverse_lazy('collaborators')
 

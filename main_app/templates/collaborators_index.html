@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | All Collaborators
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">My Collaborators</h1>
+    <h4 class="sub-header">Collaborators are members of your team, classmates, and friends. You can add Collaborators to your events or simply keep them in DB for quick access to contact information.</h4>
+    <a href="{% url 'add_collaborator' %}"><button class="btn-add">Add Collaborator</button></a>
+</div>
+
+<table style="margin-top: 2em;" >
+    <tr>
+        <th class="sub-header" style="font-size: larger;">Collaborators</th>
+        <th class="sub-header" style="font-size: larger;">Role</th>
+        <th class="sub-header" style="font-size: larger;">Email</th>
+        <th class="sub-header" style="font-size: larger;">Phone</th>
+        <th class="sub-header" style="font-size: larger;"></th>
+        <th class="sub-header" style="font-size: larger;"></th>
+        <th class="sub-header" style="font-size: larger;"></th>
+    </tr>
+    {% for c in collaborators %}
+    <tr>
+        <td><a href="{% url 'collaborator_detail' c.id%}"><h4 class="event-list-title">{{ c.name }}</h4></a></td>
+        <td><p class="event-list-title">{{ c.role }}</p></td>
+        <td><p class="event-list-title">{{ c.email }}</p></td>
+        <td><p class="event-list-title">{{ c.phone_number }}</p></td>
+        <td><a href="{% url 'collaborator_detail' c.id %}"><button class="btn-sm-g" >View</button></a></td>
+        <td><a href="{% url 'collaborator_update' c.id %}"><button class="btn-sm" >Edit</button></a></td>
+        <td><a href="{% url 'collaborator_delete' c.id %}"><button class="btn-sm-del" >Delete</button></a></td>
+
+
+    </tr>
+    {% empty %}
+    <p>You have no Collaborators on Your Team!</p>
+    <strong> Add one <a href="{% url 'add_collaborator' %}">here?</a></strong>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -12,12 +12,19 @@ urlpatterns = [
     #Other Paths
     path('', views.Home.as_view(), name="home" ),
     path('about/', views.About.as_view(), name="about" ),
+    # Events | Calendar is for clanedar view for e
     path('calendar/', views.CalendarView.as_view(), name="calendar" ),
     path('events/', views.EventList.as_view(), name="events" ),
     path('events/<int:pk>/', views.EventDetail.as_view(), name="event_detail" ),
     path('events/new/', views.EventCreate.as_view(), name="event_create"),
     path('events/<int:pk>/edit/', views.EventUpdate.as_view(), name="event_update"),
     path('events/<int:pk>/delete/', views.EventDelete.as_view(), name="event_delete"),
+    # Collaborators
+    path('collaborators/', views.CollaboratorsIndex.as_view(), name='collaborators'),
+    path('collaborators/new/', views.AddCollaborator.as_view(), name='add_collaborator'),
+    path('collaborators/<int:pk>/', views.CollaboratorDetail.as_view(), name='collaborator_detail'),
+    path('collaborators/<int:pk>/edit/', views.CollaboratorUpdate.as_view(), name='collaborator_update'),
+    path('collaborators/<int:pk>/delete/', views.CollaboratorDelete.as_view(), name='collaborator_delete'),
 
 
 
