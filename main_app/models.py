@@ -1,3 +1,4 @@
+from asyncio import Task
 from django.db import models
 from django.contrib.auth.models import User
 #phone_field from django-phone-field installation
@@ -17,6 +18,8 @@ class Collaborator(models.Model):
 
     def __str__(self):
         return self.name
+
+
 
 
 # Event Model
@@ -42,5 +45,20 @@ class Event(models.Model):
         return self.title
 
     #order based on completed status
+    class Meta:
+        ordering = ['completed']
+
+
+# Event Task Model
+class Task(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    completed = models.BooleanField(default=False)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
     class Meta:
         ordering = ['completed']
