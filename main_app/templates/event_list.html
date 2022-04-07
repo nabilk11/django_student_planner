@@ -6,7 +6,7 @@ Planify | Event List
 {% block content %} 
 <div class="header-container">
     <h1 class="header">My Events</h1>
-    <p><a href="">Back to Profile</a> </p>
+    <p><a href="{% url 'calendar' %}">Calendar View</a> </p>
     <a href="{% url 'event_create' %}"><button class="btn-add">Add Event</button></a>
 </div>
 
@@ -19,7 +19,7 @@ Planify | Event List
     {% for event in events %}
     <tr>
         <td><a class="event-list-title" href="{% url 'event_detail' event.id %}">{{ event.title }}</a></td>
-        <td><a href="{% url 'event_detail' event.id %}"><button class="btn-sm" >View</button></a></td>
+        <td><a href="{% url 'event_detail' event.id %}"><button class="btn-sm-g" >View</button></a></td>
         <td><a href="{% url 'event_update' event.id %}"><button class="btn-sm" >Edit</button></a></td>
         <td><a href="{% url 'event_delete' event.id %}"><button class="btn-sm-del" >Delete</button></a></td>
 

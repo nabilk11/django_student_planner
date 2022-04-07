@@ -10,11 +10,11 @@ Planify | Add New Event
     <p><a href="{% url 'calendar' %}">Back to Calendar View</a> </p>
 </div>
 
-<form action="" method="post">
+<form class="new-event-form" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <button class="btn" type="submit" >Add Event</button>
+    <button class="btn-add" type="submit" >Add Event</button>
 </form>
 
 

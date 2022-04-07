@@ -15,7 +15,7 @@ Planify | Event Details
     <h4>Collaborators:</h4>
     {% for c in event.collaborators.all %}
     <div class="collaborators">
-        <a href=""><h4 class="event-txt-item">{{ c.name }}</h4></a>
+        <a href="{% url 'collaborator_detail' c.id %}"><h4 class="event-txt-item">{{ c.name }}</h4></a>
         <span class="collaborator-info">{{ c.role }}</span>
     </div>
     {% empty %}
@@ -30,8 +30,8 @@ Planify | Event Details
     <p class="event-txt-item" style="color: red;"  > <strong>Status: Incomplete!</strong></p>
     {% endif %}
     <div class="event-btns">
-        <a href="{% url 'event_update' event.id%}"><button class="btn" >Edit</button></a>
-        <a href="{% url 'event_delete' event.id%}"><button class="btn" >Delete</button></a>
+        <a href="{% url 'event_update' event.id%}"><button class="btn-sm" >Edit</button></a>
+        <a href="{% url 'event_delete' event.id%}"><button class="btn-sm-del" >Delete</button></a>
     </div>
 </div>
 

@@ -1,12 +1,12 @@
 {% extends 'base.html' %} 
 
 {% block title %}
-Planify | Delete Event
+Planify | Delete Collaborator
 {% endblock %}
 {% block content %} 
 <div class="header-container">
-    <h1 class="header">{{ event }}</h1>
-    <h2 class="sub-header">Are you sure you want to delete this event?</h2>
+    <h1 class="header">{{ collaborator }}</h1>
+    <h2 class="sub-header">Are you sure you want to delete this collaborator from your team?</h2> 
 </div>
 
 <form method="post">
@@ -14,7 +14,7 @@ Planify | Delete Event
     <button class="btn-del" type="submit">YES - DELETE!</button>
     <div class="delete-options">
         <a href="{{request.META.HTTP_REFERER|escape}}" class="cancel">Cancel</a>
-        <a href="{% url 'event_update' event.id %}" class="update">Edit Instead?</a>
+        <a href="{% url 'collaborator_update' collaborator.id %}" class="update">Edit Instead?</a>
     </div>
 
 </form>

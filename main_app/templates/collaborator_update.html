@@ -1,12 +1,12 @@
 {% extends 'base.html' %} 
 
 {% block title %}
-Planify | Edit Event
+Planify | Edit Collaborator
 {% endblock %}
 {% block content %} 
 <div class="header-container">
-    <h1 class="header">Edit Event</h1>
-    <p><a href="{% url 'event_detail' event.id %}">Cancel</a> </p>
+    <h1 class="header">Edit Collaborator</h1>
+    <p><a href="{{request.META.HTTP_REFERER|escape}}">Cancel</a> </p>
 </div>
 
 <form class="update-form" action="" method="post">
@@ -15,7 +15,7 @@ Planify | Edit Event
 
     <button class="btn-up" type="submit" >Update</button>
 </form>
-<a href="{% url 'event_delete' event.id %}"><button class="btn-del" >Delete</button></a>
+<a href="{% url 'collaborator_delete' collaborator.id %}"><button class="btn-del" >Delete</button></a>
 
 
 {% endblock %}

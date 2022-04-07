@@ -22,7 +22,7 @@ body {
 
 
 .btn-add {
-    background-color: orange;
+    background-color:indianred;
     font-weight: bold;
     color: whitesmoke;
     border: 1px solid black;
@@ -37,7 +37,7 @@ body {
 
 
 .btn-one {
-    background-color: cornflowerblue;
+    background-color: royalblue;
     font-weight: bold;
     color: whitesmoke;
     border: 1px solid black;
@@ -61,7 +61,7 @@ body {
 }
 
 .btn-sm {
-    background-color: cornflowerblue;
+    background-color: royalblue;
     font-weight: bold;
     color: whitesmoke;
     border: 1px solid black;
@@ -73,6 +73,20 @@ body {
     font-weight: bold;
     text-shadow: .5px .5px .5px black;
 
+}
+
+.btn-sm-g {
+    background-color: seagreen;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 4rem;
+    height: 1.5rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: .5px .5px .5px black;
 
 }
 
@@ -88,6 +102,36 @@ body {
     box-shadow: 3px 3px 3px black;
     cursor: pointer;
     font-weight: bold;
+    text-shadow: .5px .5px .5px black;
+}
+
+.btn-del {
+    background-color: crimson;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 8rem;
+    height: 2rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+    text-shadow: .5px .5px .5px black;
+}
+.btn-del:hover {
+    transform: scale(1.08);
+    transition: .3s all ease;
+}
+
+.btn-up {
+    background-color:royalblue;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 8rem;
+    height: 2rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
     text-shadow: .5px .5px .5px black;
 
 }
@@ -194,3 +238,28 @@ tr .event-list-title {
     text-shadow: .5px .5px .5px black;
 }
 
+
+/* DELETE CONFIRMATION PAGES */
+
+.delete-options {
+    margin-top: 3vh;
+    justify-content: space-between;
+}
+
+.cancel {
+    margin-right: 1vw;
+}
+
+
+/* UPDATE PAGE STYLING */
+
+.update-form {
+    margin-bottom: 3vh;
+    align-items: center;
+    justify-content: center;
+    display:list-item;
+}
+
+.update-form input {
+    max-width: 20vw;
+}

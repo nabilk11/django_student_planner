@@ -91,7 +91,7 @@ class Calendar(HTMLCalendar):
             cal += f'{self.formatweek(week, events)}\n'
         return cal
 
-# calendar / events view
+# Calendar / Events View
 class CalendarView(ListView):
     model = Event
     template_name = 'calendar.html'
@@ -201,4 +201,18 @@ class CollaboratorDetail(DetailView):
     model = Collaborator
     template_name = 'collaborator_detail.html'
     context_object_name = 'collaborator'
+
+# Collaborator Update
+class CollaboratorUpdate(UpdateView):
+    model = Collaborator
+    template_name = 'collaborator_update.html'
+    fields = ['name', 'email', 'phone_number', 'role']
+    success_url = reverse_lazy('collaborators')
+
+# Collaborator Delete
+class CollaboratorDelete(DeleteView):
+    model = Collaborator
+    template_name = 'collaborator_confirm_delete.html'
+    context_object_name = 'collaborator'
+    success_url = reverse_lazy('collaborators')
 

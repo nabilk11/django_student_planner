@@ -6,8 +6,8 @@ Planify | Collaborator Details
 {% block content %} 
 <div class="header-container">
     <h1 class="header">{{ collaborator.name }}</h1>
-    <p><a href="{% url 'events' %}">Back to Event List</a> </p>
-    <p><a href="{% url 'calendar' %}">Back to Calendar View</a> </p>
+    <p><a href="{% url 'collaborators' %}">Back to Collaborators List</a> </p>
+    <p><a href="{% url 'events' %}">View Events List</a> </p>
 </div>
 
 <table style="margin-top: 2em;" >
@@ -22,8 +22,8 @@ Planify | Collaborator Details
         <td><p class="event-list-title">{{ collaborator.role }}</p></td>
         <td><p class="event-list-title">{{ collaborator.email }}</p></td>
         <td><p class="event-list-title">{{ collaborator.phone_number }}</p></td>
-        <td><a class="event-list-link" href="{% url 'add_collaborator' %}">Edit Info</a></td>
-        <td><a class="event-list-link" href="{% url 'add_collaborator' %}">Delete</a></td>
+        <td><a href="{% url 'collaborator_update' collaborator.id %}"><button class="btn-sm" >Edit</button></a></td>
+        <td><a href="{% url 'collaborator_delete' collaborator.id %}"><button class="btn-sm-del" >Delete</button></a></td>
     </tr>
 </table>
 
