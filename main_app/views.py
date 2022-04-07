@@ -188,9 +188,13 @@ class CollaboratorsIndex(ListView):
 # AddCollaborator
 class AddCollaborator(CreateView):
     model = Collaborator
-    fields = '__all__'
+    fields = ['name', 'email', 'phone_number', 'role']
     template_name = 'collaborator_form.html'
     success_url = reverse_lazy('collaborators')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(AddCollaborator, self).form_valid(form)
 
 # Collaborator Detail View - Ind Event Details
 class CollaboratorDetail(DetailView):
