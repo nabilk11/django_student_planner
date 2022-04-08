@@ -22,9 +22,10 @@ Planify | Event Details
         {% endif %} 
     </div>
     {% empty %}
-    <div>No tasks for this event.</div>
+    <div class="tasks"><strong class="empty">No tasks for this event.</strong> </div>
     {% endfor %}
-    <hr/>
+    <a href="{% url 'add_task' event.id%}"><button class="btn-sm-g">Add</button></a>
+    <hr class="divider"/>
     <h3 class="sub-header" >Collaborators:</h3>
     {% for c in event.collaborators.all %}
     <div class="collaborators">
@@ -32,15 +33,15 @@ Planify | Event Details
         <small tyle="color: whitesmoke;" class="collaborator-info">{{ c.role }}</small></h4></a>
     </div>
     {% empty %}
-        <div>You have no collaborators for this event.</div>
+        <div class="collaborators"><strong class="empty">You have no collaborators for this event.</strong></div>
     {% endfor %}
-    <hr/>
+    <hr class="divider" />
     <p class="event-txt-item">Created at: {{ event.created_at }}</p>
     <p class="event-txt-item"><strong>Due Date: {{ event.due_date }}</strong></p>
     {% if event.completed == True  %}
     <p class="event-txt-item" style="color: seagreen;" ><strong>Status: Completed!</strong></p>
     {% else  %}
-    <p class="event-txt-item" style="color: red;"> <strong>Status: Incomplete!</strong></p>
+    <p class="event-txt-item" style="color: crimson;"> <strong>Status: Incomplete!</strong></p>
     {% endif %}
     <div class="event-btns">
         <a href="{% url 'event_update' event.id%}"><button class="btn-sm" >Edit</button></a>

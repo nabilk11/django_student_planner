@@ -39,8 +39,8 @@ class Event(models.Model):
     event_type = models.CharField(max_length=10, choices=TYPE_OPTIONS)
     #Add Collaborators to Event Model
     collaborators = models.ManyToManyField(Collaborator, blank=True)
-    #Add Tasks to Event Model
-    tasks = models.ManyToManyField('Task', blank=True)
+    # #Add Tasks to Event Model
+    # tasks = models.ManyToManyField('Task', blank=True)
     #view by title
     def __str__(self):
         return self.title
@@ -56,6 +56,7 @@ class Task(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     completed = models.BooleanField(default=False)
+    event = models.ForeignKey(Event, related_name="tasks", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

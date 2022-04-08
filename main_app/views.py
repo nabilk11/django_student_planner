@@ -1,6 +1,5 @@
-from dataclasses import fields
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
 from .models import Collaborator, Event, Task
 from datetime import datetime, timedelta, date
@@ -17,6 +16,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Register imports
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+# Custom Forms
+from .forms import AddTaskForm
 
 # Create your views here.
 
@@ -222,3 +223,14 @@ class CollaboratorDelete(DeleteView):
 
 
 ########## EVENT TASK VIEWS ##########
+# Add Event Task 
+class AddTask(CreateView):
+    model = Task
+    form_class = AddTaskForm
+    template_name = 'task_form.html'
+    success_url = reverse_lazy('events')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.event_id = self.kwargs['pk']
+        return super(AddTask, self).form_valid(form)
