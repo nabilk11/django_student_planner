@@ -1,9 +1,8 @@
 from dataclasses import fields
-from pyexpat import model
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
-from .models import Collaborator, Event
+from .models import Collaborator, Event, Task
 from datetime import datetime, timedelta, date
 from calendar import HTMLCalendar, month
 from django.views.generic import ListView
@@ -21,7 +20,8 @@ from django.contrib.auth import login
 
 # Create your views here.
 
-# AUTH VIEWS - using class based views, may switch to function based in some instances
+########## AUTH VIEWS ##########
+# Login (Logout was added directly to URLs.py)
 class Login(LoginView):
     template_name = 'login.html'
     fields = '__all__'
@@ -30,7 +30,7 @@ class Login(LoginView):
     def get_success_url(self):
         return reverse_lazy('calendar')
 
-# REGISTER VIEW
+# Register View
 class Register(FormView):
     template_name = 'register.html'
     form_class = UserCreationForm
@@ -49,6 +49,7 @@ class Register(FormView):
             return redirect('calendar')
         return super(Register, self).get(*args, **kwargs)
 
+########## TEMPLATE VIEWS ##########
 
 class Home(TemplateView):
     template_name = "home.html"
@@ -56,7 +57,8 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = "about.html"  
 
-# Calendar Utility - May move to separate file later?
+########## CALENDAR UTILITY ##########
+
 # currently adds event to calendar based on created_at timing, possibly change to due_date?
 class Calendar(HTMLCalendar):
     def __init__(self, year=None, month=None):
@@ -91,7 +93,8 @@ class Calendar(HTMLCalendar):
             cal += f'{self.formatweek(week, events)}\n'
         return cal
 
-# Calendar / Events View
+########## CALENDAR & EVENT VIEWS ##########
+
 class CalendarView(ListView):
     model = Event
     template_name = 'calendar.html'
@@ -174,7 +177,8 @@ class EventDelete(DeleteView):
     success_url = reverse_lazy('calendar')
 
 
-# Collaborators
+########## COLLABORATOR VIEWS ##########
+
 class CollaboratorsIndex(ListView):
     model = Collaborator
     template_name = 'collaborators_index.html'
@@ -216,3 +220,5 @@ class CollaboratorDelete(DeleteView):
     context_object_name = 'collaborator'
     success_url = reverse_lazy('collaborators')
 
+
+########## EVENT TASK VIEWS ##########

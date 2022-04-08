@@ -25,7 +25,8 @@ urlpatterns = [
     path('collaborators/<int:pk>/', views.CollaboratorDetail.as_view(), name='collaborator_detail'),
     path('collaborators/<int:pk>/edit/', views.CollaboratorUpdate.as_view(), name='collaborator_update'),
     path('collaborators/<int:pk>/delete/', views.CollaboratorDelete.as_view(), name='collaborator_delete'),
-
+    # Event Tasks
+    # path('events/<int:pk>/', views.TaskList.as_view(), name="event_detail" ),
 
 
 
