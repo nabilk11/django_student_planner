@@ -6,28 +6,42 @@ Planify | Event Details
 {% block content %} 
 <div class="header-container">
     <h1 class="header">{{ event }}</h1>
-    <h3 class="sub-header">{{ event.event_type }} Event</h3>
+    <h2 class="sub-header">{{ event.event_type }} Event</h2>
     <p><a href="{% url 'events' %}">Back to Event List</a> </p>
     <p><a href="{% url 'calendar' %}">Back to Calendar View</a> </p>
 </div>
 <div class="event-container">
     <h4>{{ event.description }}</h4>
-    <h4>Collaborators:</h4>
-    {% for c in event.collaborators.all %}
-    <div class="collaborators">
-        <a href="{% url 'collaborator_detail' c.id %}"><h4 class="event-txt-item">{{ c.name }}</h4></a>
-        <span class="collaborator-info">{{ c.role }}</span>
+    <h3 class="sub-header" >Event Tasks:</h3>
+    {% for task in event.tasks.all %}
+    <div class="tasks">
+        {% if task.completed == True %}
+        <a href="{% url 'task_detail' task.id %}"><h4 style="color: seagreen;" class="event-txt-item">✅ {{ task.title }}</h4></a>
+        {% else  %}
+        <a href="{% url 'task_detail' task.id %}"><h4 style="color: crimson;" class="event-txt-item">❌ {{ task.title }}</h4></a>
+        {% endif %} 
     </div>
     {% empty %}
-        <div>You have no collaborators for this event.</div>
+    <div class="tasks"><strong class="empty">No tasks for this event.</strong> </div>
     {% endfor %}
-    <hr/>
+    <a href="{% url 'add_task' event.id%}"><button class="btn-sm-g">Add</button></a>
+    <hr class="divider"/>
+    <h3 class="sub-header" >Collaborators:</h3>
+    {% for c in event.collaborators.all %}
+    <div class="collaborators">
+        <a href="{% url 'collaborator_detail' c.id %}"><h4 style="color: seagreen;" class="event-txt-item">{{ c.name }} <br>
+        <small tyle="color: whitesmoke;" class="collaborator-info">{{ c.role }}</small></h4></a>
+    </div>
+    {% empty %}
+        <div class="collaborators"><strong class="empty">You have no collaborators for this event.</strong></div>
+    {% endfor %}
+    <hr class="divider" />
     <p class="event-txt-item">Created at: {{ event.created_at }}</p>
     <p class="event-txt-item"><strong>Due Date: {{ event.due_date }}</strong></p>
     {% if event.completed == True  %}
-    <p class="event-txt-item" style="color: green;" ><strong>Status: Completed!</strong></p>
+    <p class="event-txt-item" style="color: seagreen;" ><strong>Status: Completed!</strong></p>
     {% else  %}
-    <p class="event-txt-item" style="color: red;"  > <strong>Status: Incomplete!</strong></p>
+    <p class="event-txt-item" style="color: crimson;"> <strong>Status: Incomplete!</strong></p>
     {% endif %}
     <div class="event-btns">
         <a href="{% url 'event_update' event.id%}"><button class="btn-sm" >Edit</button></a>
