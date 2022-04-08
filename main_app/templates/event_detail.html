@@ -16,9 +16,9 @@ Planify | Event Details
     {% for task in event.tasks.all %}
     <div class="tasks">
         {% if task.completed == True %}
-        <a href=""><h4 style="color: seagreen;" class="event-txt-item">✅ {{ task.title }}</h4></a>
+        <a href="{% url 'task_detail' task.id %}"><h4 style="color: seagreen;" class="event-txt-item">✅ {{ task.title }}</h4></a>
         {% else  %}
-        <a href=""><h4 style="color: crimson;" class="event-txt-item">❌ {{ task.title }}</h4></a>
+        <a href="{% url 'task_detail' task.id %}"><h4 style="color: crimson;" class="event-txt-item">❌ {{ task.title }}</h4></a>
         {% endif %} 
     </div>
     {% empty %}

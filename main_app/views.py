@@ -234,3 +234,13 @@ class AddTask(CreateView):
         form.instance.user = self.request.user
         form.instance.event_id = self.kwargs['pk']
         return super(AddTask, self).form_valid(form)
+
+
+# Event Task Detail View
+# Event Detail View - Ind Event Details
+class TaskDetail(DetailView):
+    model = Task
+    template_name = 'task_detail.html'
+    context_object_name = 'task'
+
+    

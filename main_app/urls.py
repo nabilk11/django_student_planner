@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.urls import path
 from . import views
 from django.contrib.auth.views import LogoutView
@@ -27,7 +28,7 @@ urlpatterns = [
     path('collaborators/<int:pk>/delete/', views.CollaboratorDelete.as_view(), name='collaborator_delete'),
     # Event Tasks
     path('events/<int:pk>/addtask', views.AddTask.as_view(), name="add_task" ),
-
+    path('task/<int:pk>/', views.TaskDetail.as_view(), name='task_detail'),
 
 
 ]
