@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Delete Task
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">{{ task }}</h1>
+    <h2 class="sub-header">Are you sure you want to delete this task?</h2>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <button class="btn-del" type="submit">YES - DELETE!</button>
+    <div class="delete-options">
+        <a href="{{request.META.HTTP_REFERER|escape}}" class="cancel">Cancel</a>
+        <a href="{% url 'task_update' task.id %}" class="update">Edit Instead?</a>
+    </div>
+
+</form>
+{% endblock %}

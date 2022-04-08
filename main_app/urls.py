@@ -29,6 +29,9 @@ urlpatterns = [
     # Event Tasks
     path('events/<int:pk>/addtask', views.AddTask.as_view(), name="add_task" ),
     path('task/<int:pk>/', views.TaskDetail.as_view(), name='task_detail'),
+    path('task/<int:pk>/edit/', views.TaskUpdate.as_view(), name='task_update'),
+    path('task/<int:pk>/delete/', views.TaskDelete.as_view(), name='task_delete'),
+    
 
 
 ]

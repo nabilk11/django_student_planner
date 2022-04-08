@@ -14,8 +14,8 @@ Planify | Event Task Details
 <hr>
 <div class="detail-actions">
 <h4>Choose an Action</h4>
-    <a href="" class="action">Edit</a>
-    <a href="" class="action">Delete</a>
+    <a href="{% url 'task_update' task.id%}" class="action">Edit</a>
+    <a href="{% url 'task_delete' task.id%}" class="action">Delete</a>
 </div>
 
 {% endblock %}
