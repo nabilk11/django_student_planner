@@ -9,8 +9,9 @@ urlpatterns = [
     path('login/', views.Login.as_view(), name="login"),
     path('register/', views.Register.as_view(), name="register"),
     # User Profile Views
-    path('edit_profile/', views.UserEditView.as_view(), name="edit_profile"),
+    path('<int:pk>/edit_account/', views.UserAccountView.as_view(), name="edit_account"),
     path('<int:pk>/profile/', views.ProfileView.as_view(), name="profile"),
+    path('<int:pk>/profile/edit/', views.EditProfileView.as_view(), name="edit_profile"),
     #LogoutView imported straight into urls.py
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
     #Other Paths

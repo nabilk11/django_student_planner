@@ -12,6 +12,8 @@ Planify | Profile
         
         <p><a href="{% url 'events' %}">Your Events List</a></p>
         <p><a href="{% url 'calendar' %}">View Your Calendar</a></p>
+        <a href="{% url 'edit_profile' user.id %}"> <button class="btn-one" >Edit Profile</button> </a>
+        <a href="{% url 'edit_account' user.id %}"> <button class="btn-del" >Edit Account</button> </a>
     </div>
     <div class="profile-info">
         <h2 class="sub-header">Contact Info</h2>

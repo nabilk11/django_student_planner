@@ -19,18 +19,18 @@
         <a href="/" class="nav-link">Home</a>
         <a href="/about/" class="nav-link">About</a>
         {% if user.is_authenticated %}
-        <div class="dropdown">
+        <div class="dropdown" style="align-items: center; justify-content: center; " >
             <a href="{% url 'profile' user.id%}" class="drop-link">Profile
-                <i class="fa fa-caret-down"></i> 
+                <span style="font-size: 10px;" class=""> ▼ </span> 
             </a>
             <div class="drop-content">
-                <a href="/edit_profile/" id="drop-item" class="nav-link">Edit Profile</a>
+                <a href="{% url 'edit_profile' user.id%}" id="drop-item" class="nav-link">Edit Profile</a>
             </div>
         </div>
         <a href="/calendar/" class="nav-link">Calendar</a>
         <div class="dropdown">
             <a href="/events/" class="drop-link">Events
-                <i class="fa fa-caret-down"></i> 
+                <span style="font-size: 10px;" class=""> ▼ </span> 
             </a>
             <div class="drop-content">
                 <a href="/events/new/" id="drop-item" class="nav-link">Add Event</a>
@@ -38,7 +38,7 @@
         </div>
         <div class="dropdown">
             <a href="/collaborators/" class="drop-link">Collaborators
-                <i class="fa fa-caret-down"></i> 
+                <span style="font-size: 10px;" class=""> ▼ </span>  
             </a>
             <div class="drop-content">
                 <a href="/collaborators/new/" id="drop-item" class="nav-link">Add Collaborator</a>

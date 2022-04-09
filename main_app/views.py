@@ -71,11 +71,19 @@ class ProfileView(DetailView):
         context['collaborators'] = collaborators
         return context
 
-# EDIT USER VIEW
-class UserEditView(CreateView):
-    form_class = UserChangeForm
+class EditProfileView(UpdateView):
+    model = Profile
     template_name = 'edit_profile.html'
-    success_url = reverse_lazy('home')
+    fields = ['bio', 'profile_pic', 'website_url', 'instagram_url', 'twitter_url', 'linkedin_url']
+    success_url = reverse_lazy('profile')
+
+
+
+# EDIT USER ACCOUNT INFO VIEW
+class UserAccountView(CreateView):
+    form_class = UserChangeForm
+    template_name = 'edit_account.html'
+    success_url = reverse_lazy('profile')
     
     def get_object(self):
         return self.request.user
