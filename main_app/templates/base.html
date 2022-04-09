@@ -36,6 +36,14 @@
                 <a href="/collaborators/new/" id="drop-item" class="nav-link">Add Collaborator</a>
             </div>
         </div>
+        <div class="dropdown">
+            <a href="/profile/" class="drop-link">Profile
+                <i class="fa fa-caret-down"></i> 
+            </a>
+            <div class="drop-content">
+                <a href="/edit_profile/" id="drop-item" class="nav-link">Edit Profile</a>
+            </div>
+        </div>
         <a href="/admin/" class="nav-link">Admin</a>
         <a href="{% url 'logout' %}" class="nav-link">Logout</a>
         {% else %}

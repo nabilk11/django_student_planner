@@ -26,3 +26,12 @@ class TaskUpdateForm(forms.ModelForm):
             'completed': forms.CheckboxInput(attrs={'class': 'form-control'}),
         }
 
+class TaskCompleteForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ('completed',)
+
+        widgets = {
+            'completed': forms.CheckboxInput(attrs={'class': 'form-control'}),
+        }
+

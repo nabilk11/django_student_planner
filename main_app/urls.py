@@ -8,6 +8,8 @@ urlpatterns = [
     # AUTH URLS - Login + Register
     path('login/', views.Login.as_view(), name="login"),
     path('register/', views.Register.as_view(), name="register"),
+    path('edit_profile/', views.UserEditView.as_view(), name="edit_profile"),
+
     #LogoutView imported straight into urls.py
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
     #Other Paths
@@ -31,6 +33,7 @@ urlpatterns = [
     path('task/<int:pk>/', views.TaskDetail.as_view(), name='task_detail'),
     path('task/<int:pk>/edit/', views.TaskUpdate.as_view(), name='task_update'),
     path('task/<int:pk>/delete/', views.TaskDelete.as_view(), name='task_delete'),
+    path('task/<int:pk>/completed/', views.TaskCompleted.as_view(), name='task_completed'),
     
 
 

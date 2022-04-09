@@ -1,3 +1,5 @@
+from dataclasses import fields
+from pyexpat import model
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
@@ -14,10 +16,10 @@ from django.contrib.auth.views import LoginView
 # Login Mixin - passed into views to restrict
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Register imports
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import login
 # Custom Forms
-from .forms import AddTaskForm, TaskUpdateForm
+from .forms import AddTaskForm, TaskCompleteForm, TaskUpdateForm
 
 # Create your views here.
 
@@ -49,6 +51,16 @@ class Register(FormView):
         if self.request.user.is_authenticated:
             return redirect('calendar')
         return super(Register, self).get(*args, **kwargs)
+
+
+# EDIT USER VIEW
+class UserEditView(CreateView):
+    form_class = UserChangeForm
+    template_name = 'edit_profile.html'
+    success_url = reverse_lazy('home')
+    
+    def get_object(self):
+        return self.request.user
 
 ########## TEMPLATE VIEWS ##########
 
@@ -255,3 +267,10 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     template_name = 'task_confirm_delete.html'
     context_object_name = 'task'
     success_url = reverse_lazy('events')
+
+class TaskCompleted(LoginRequiredMixin, UpdateView):
+    model = Task
+    template_name = 'event_detail.html'
+    form_class = TaskCompleteForm
+    success_url = reverse_lazy('events')
+    

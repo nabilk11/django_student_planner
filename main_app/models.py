@@ -8,6 +8,14 @@ from phone_field import PhoneField
 
 # Create your models here.
 
+# Profile Model
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
+
 #Collaborator Model
 class Collaborator(models.Model):
     name = models.CharField(max_length=55)
