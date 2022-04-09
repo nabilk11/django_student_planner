@@ -3,8 +3,18 @@
 
 /* GENERAL STYLES */
 
+* {
+    font-family: 'Overpass', sans-serif;
+}
+
 body {
-    background-color: rgb(73, 76, 79);
+    margin: 0;
+    background: url("../images/prism.png");
+    
+}
+
+.app {
+    margin: 1rem;
 }
 
 .header {
@@ -143,7 +153,7 @@ nav {
     background-color: rgb(0, 0, 0);
     width: 100%;
     top: 0;
-    border-radius: 10px;
+    overflow: hidden;
     display: flex; 
     align-items: center; 
     justify-content: space-around;
@@ -155,14 +165,61 @@ nav {
     color: seagreen;
 }
 
-.nav-link {
+nav .nav-link {
     text-decoration: none;
     font-weight: bold;
+    border-radius: 10px;
+    padding: 5px;
+}
 
+.dropdown {
+    float: left;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 5px;
+  }
 
+.dropdown .drop-link {
+    text-decoration: none;
+    font-weight: bold;
+    font-family: inherit;
+    margin: 0;
+    border-radius: 10px;
+    padding: 5px;
+   
+  }
+
+.drop-content {
+      display: none;
+      position: absolute;
+      background-color: rgb(50, 49, 49);
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+  }
+
+.drop-content a {
+    float: none;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    border-radius: 10px;
+    padding: 5px;
 
 }
 
+
+nav .nav-link:hover, .dropdown:hover .drop-link {
+    background-color:royalblue;
+}
+
+.dropdown:hover .drop-content {
+    display: block;
+  }
+
+#drop-item {
+    margin-top: .25em;
+  }
 
 /* CALENDAR PAGE STYLING */
 .calendar-btns {
