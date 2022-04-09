@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>
         {% block title %}
 
@@ -19,10 +20,22 @@
         <a href="/about/" class="nav-link">About</a>
         {% if user.is_authenticated %}
         <a href="/calendar/" class="nav-link">Calendar</a>
-        <a href="/events/" class="nav-link">Events</a>
-        <a href="/events/new/" class="nav-link">Add Event</a>
-        <a href="/collaborators/" class="nav-link">Collaborators</a>
-        <a href="/collaborators/new/" class="nav-link">Add Collaborator</a>
+        <div class="dropdown">
+            <a href="/events/" class="drop-link">Events
+                <i class="fa fa-caret-down"></i> 
+            </a>
+            <div class="drop-content">
+                <a href="/events/new/" id="drop-item" class="nav-link">Add Event</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="/collaborators/" class="drop-link">Collaborators
+                <i class="fa fa-caret-down"></i> 
+            </a>
+            <div class="drop-content">
+                <a href="/collaborators/new/" id="drop-item" class="nav-link">Add Collaborator</a>
+            </div>
+        </div>
         <a href="/admin/" class="nav-link">Admin</a>
         <a href="{% url 'logout' %}" class="nav-link">Logout</a>
         {% else %}
@@ -30,8 +43,10 @@
         <a href="{% url 'register' %}" class="nav-link">Register</a>
         {% endif %}
     </nav>
+    <div class="app">
     {% block content %}
 
     {% endblock %} 
+    </div>
 </body>
 </html>

@@ -14,3 +14,15 @@ class AddTaskForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class':'form-control'}),
             'description': forms.Textarea(attrs={'class':'form-control'}),
         }
+
+class TaskUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ('title', 'description', 'completed')
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'decscription': forms.Textarea(attrs={'class': 'form-control'}),
+            'completed': forms.CheckboxInput(attrs={'class': 'form-control'}),
+        }
+

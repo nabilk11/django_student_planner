@@ -17,7 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 # Custom Forms
-from .forms import AddTaskForm
+from .forms import AddTaskForm, TaskUpdateForm
 
 # Create your views here.
 
@@ -237,10 +237,21 @@ class AddTask(CreateView):
 
 
 # Event Task Detail View
-# Event Detail View - Ind Event Details
 class TaskDetail(DetailView):
     model = Task
     template_name = 'task_detail.html'
     context_object_name = 'task'
 
-    
+# Event Task Update View
+class TaskUpdate(UpdateView):
+    model = Task
+    template_name = 'task_update.html'
+    form_class = TaskUpdateForm
+    success_url = reverse_lazy('events')
+
+# Event Task Delete View
+class TaskDelete(DeleteView):
+    model = Task
+    template_name = 'task_confirm_delete.html'
+    context_object_name = 'task'
+    success_url = reverse_lazy('events')
