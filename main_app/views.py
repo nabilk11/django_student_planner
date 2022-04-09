@@ -1,9 +1,10 @@
 from dataclasses import fields
+from gc import get_objects
 from pyexpat import model
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
-from .models import Collaborator, Event, Task
+from .models import Collaborator, Event, Task, Profile
 from datetime import datetime, timedelta, date
 from calendar import HTMLCalendar, month
 from django.views.generic import ListView
@@ -52,6 +53,23 @@ class Register(FormView):
             return redirect('calendar')
         return super(Register, self).get(*args, **kwargs)
 
+
+########## TEMPLATE VIEWS ##########
+class ProfileView(DetailView):
+    model = Profile
+    template_name = "profile.html"
+
+    def get_context_data(self, *args, **kwargs):
+        users = Profile.objects.all()
+        context = super(ProfileView, self).get_context_data(*args, **kwargs)
+
+        current_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+        events = Event.objects.filter(user=self.kwargs['pk'])
+        collaborators = Collaborator.objects.filter(user=self.kwargs['pk'])
+        context['current_user'] = current_user
+        context['events'] = events
+        context['collaborators'] = collaborators
+        return context
 
 # EDIT USER VIEW
 class UserEditView(CreateView):
@@ -273,4 +291,3 @@ class TaskCompleted(LoginRequiredMixin, UpdateView):
     template_name = 'event_detail.html'
     form_class = TaskCompleteForm
     success_url = reverse_lazy('events')
-    
