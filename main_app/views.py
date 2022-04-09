@@ -96,7 +96,7 @@ class Calendar(HTMLCalendar):
 
 ########## CALENDAR & EVENT VIEWS ##########
 
-class CalendarView(ListView):
+class CalendarView(LoginRequiredMixin, ListView):
     model = Event
     template_name = 'calendar.html'
 
@@ -134,7 +134,7 @@ def next_month(d):
     return month
 
 # Events List View - for user's event list
-class EventList(ListView):
+class EventList(LoginRequiredMixin, ListView):
     model = Event
     template_name = 'event_list.html'
     context_object_name = 'events'
@@ -147,14 +147,14 @@ class EventList(ListView):
         return context
 
 # Event Detail View - Ind Event Details
-class EventDetail(DetailView):
+class EventDetail(LoginRequiredMixin, DetailView):
     model = Event
     template_name = 'event_detail.html'
     context_object_name = 'event'
     
 
 # Event Create View - may have to alter with datetime of due date
-class EventCreate(CreateView):
+class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
     template_name = 'event_form.html'
     fields = ['title', 'description', 'completed', 'due_date', 'event_type', 'collaborators']
@@ -165,13 +165,13 @@ class EventCreate(CreateView):
         return super(EventCreate, self).form_valid(form)
 
 # Update/Edit Event
-class EventUpdate(UpdateView):
+class EventUpdate(LoginRequiredMixin, UpdateView):
     model = Event
     template_name = 'event_update.html'
     fields = ['title', 'description', 'completed', 'due_date', 'event_type', 'collaborators']
     success_url = reverse_lazy('calendar')
 
-class EventDelete(DeleteView):
+class EventDelete(LoginRequiredMixin, DeleteView):
     model = Event
     template_name = 'event_confirm_delete.html'
     context_object_name = 'event'
@@ -180,7 +180,7 @@ class EventDelete(DeleteView):
 
 ########## COLLABORATOR VIEWS ##########
 
-class CollaboratorsIndex(ListView):
+class CollaboratorsIndex(LoginRequiredMixin, ListView):
     model = Collaborator
     template_name = 'collaborators_index.html'
     context_object_name = 'collaborators'
@@ -191,7 +191,7 @@ class CollaboratorsIndex(ListView):
         return context
 
 # AddCollaborator
-class AddCollaborator(CreateView):
+class AddCollaborator(LoginRequiredMixin, CreateView):
     model = Collaborator
     fields = ['name', 'email', 'phone_number', 'role']
     template_name = 'collaborator_form.html'
@@ -202,20 +202,20 @@ class AddCollaborator(CreateView):
         return super(AddCollaborator, self).form_valid(form)
 
 # Collaborator Detail View - Ind Event Details
-class CollaboratorDetail(DetailView):
+class CollaboratorDetail(LoginRequiredMixin, DetailView):
     model = Collaborator
     template_name = 'collaborator_detail.html'
     context_object_name = 'collaborator'
 
 # Collaborator Update
-class CollaboratorUpdate(UpdateView):
+class CollaboratorUpdate(LoginRequiredMixin, UpdateView):
     model = Collaborator
     template_name = 'collaborator_update.html'
     fields = ['name', 'email', 'phone_number', 'role']
     success_url = reverse_lazy('collaborators')
 
 # Collaborator Delete
-class CollaboratorDelete(DeleteView):
+class CollaboratorDelete(LoginRequiredMixin, DeleteView):
     model = Collaborator
     template_name = 'collaborator_confirm_delete.html'
     context_object_name = 'collaborator'
@@ -224,7 +224,7 @@ class CollaboratorDelete(DeleteView):
 
 ########## EVENT TASK VIEWS ##########
 # Add Event Task 
-class AddTask(CreateView):
+class AddTask(LoginRequiredMixin, CreateView):
     model = Task
     form_class = AddTaskForm
     template_name = 'task_form.html'
@@ -237,20 +237,20 @@ class AddTask(CreateView):
 
 
 # Event Task Detail View
-class TaskDetail(DetailView):
+class TaskDetail(LoginRequiredMixin, DetailView):
     model = Task
     template_name = 'task_detail.html'
     context_object_name = 'task'
 
 # Event Task Update View
-class TaskUpdate(UpdateView):
+class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'task_update.html'
     form_class = TaskUpdateForm
     success_url = reverse_lazy('events')
 
 # Event Task Delete View
-class TaskDelete(DeleteView):
+class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = 'task_confirm_delete.html'
     context_object_name = 'task'

@@ -8,6 +8,7 @@
 }
 
 body {
+    color: aliceblue;
     margin: 0;
     background: url("../images/prism.png");
     
@@ -220,6 +221,26 @@ nav .nav-link:hover, .dropdown:hover .drop-link {
 #drop-item {
     margin-top: .25em;
   }
+
+
+/* LOGIN/REGISTER PAGE STYLING */
+
+.login-page {
+    text-align: center;
+}
+
+.reg-page {
+    text-align: center;
+
+}
+
+.reg-page li {
+    list-style: none;
+}
+
+
+
+
 
 /* CALENDAR PAGE STYLING */
 .calendar-btns {
