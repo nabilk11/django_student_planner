@@ -6,6 +6,7 @@ Planify | My Calendar
 {% block content %} 
 <div class="header-container">
     <h1 class="header">{{ user }}'s Calendar</h1>
+    <span><img style="border-radius: 50%; object-fit: cover;" src="{{ user.profile.profile_pic.url }}" width="60px" height="60px" alt=""></span>
     <p><a href="{% url 'events' %}">Events List View</a> </p>
 </div>
 <div class="cal-container">

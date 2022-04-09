@@ -1,0 +1,18 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Profile
+{% endblock %}
+{% block content %} 
+<div class="header-container">
+    <h1 class="header">{{ user }}'s Profile</h1>
+    <span><img style="border-radius: 50%; object-fit: cover;" src="{{ user.profile.profile_pic.url }}" width="150px" height="150px" alt=""></span>
+    <p class="user-info">{{ user.email }}</p>
+    <a href="{% url 'events' %}">Events List View</a>
+    <a href="{% url 'calendar' %}">Calendar View</a>
+</div>
+
+
+
+
+{% endblock %}
