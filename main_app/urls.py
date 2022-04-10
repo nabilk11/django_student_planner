@@ -9,7 +9,7 @@ urlpatterns = [
     path('login/', views.Login.as_view(), name="login"),
     path('register/', views.Register.as_view(), name="register"),
     # User Profile Views
-    path('<int:pk>/edit_account/', views.UserAccountView.as_view(), name="edit_account"),
+    path('<int:pk>/edit_account/', views.EditAccountView.as_view(), name="edit_account"),
     path('<int:pk>/profile/', views.ProfileView.as_view(), name="profile"),
     path('<int:pk>/profile/edit/', views.EditProfileView.as_view(), name="edit_profile"),
     #LogoutView imported straight into urls.py

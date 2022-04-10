@@ -80,7 +80,7 @@ class EditProfileView(UpdateView):
 
 
 # EDIT USER ACCOUNT INFO VIEW
-class UserAccountView(CreateView):
+class EditAccountView(UpdateView):
     form_class = UserChangeForm
     template_name = 'edit_account.html'
     success_url = reverse_lazy('profile')
