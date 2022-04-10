@@ -1,4 +1,5 @@
 {% extends 'base.html' %} 
+{% load static %}
 
 {% block title %}
 Planify | Profile
@@ -8,12 +9,19 @@ Planify | Profile
     
     <div class="header-container">  
         <h1 class="header">{{ current_user }}'s Profile</h1>
+        {% if current_user.profile_pic %}
         <span><img style="border-radius: 50%; object-fit: cover;" src="{{ current_user.profile_pic.url }}" width="150px" height="150px" alt=""></span>
+        {% else %}
+        <span><img style="border-radius: 50%; object-fit: cover;" src="{% static 'images/default_pf.png' %}" width="150px" height="150px" alt=""></span>
+
+        {% endif %}
         
         <p><a href="{% url 'events' %}">Your Events List</a></p>
         <p><a href="{% url 'calendar' %}">View Your Calendar</a></p>
+        {% if user.id == profile.user.id %}
         <a href="{% url 'edit_profile' user.id %}"> <button class="btn-one" >Edit Profile</button> </a>
         <a href="{% url 'edit_account' user.id %}"> <button class="btn-del" >Edit Account</button> </a>
+        {% endif %}
     </div>
     <div class="profile-info">
         <h2 class="sub-header">Contact Info</h2>
