@@ -1,8 +1,20 @@
-from dataclasses import fields
-from wsgiref.headers import tspecials
+from dataclasses import field
+from pyexpat import model
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django import forms
 from .models import Task
 
+
+# NEW REGISTER FORM
+class RegisterForm(UserCreationForm):
+    email = forms.EmailField()
+    first_name = forms.CharField(max_length=55)
+    last_name = forms.CharField(max_length=55)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'password1', 'password2') 
 
 
 class AddTaskForm(forms.ModelForm):

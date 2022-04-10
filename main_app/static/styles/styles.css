@@ -144,6 +144,19 @@ body {
     box-shadow: 3px 3px 3px black;
     cursor: pointer;
     text-shadow: .5px .5px .5px black;
+}
+
+.btn-auth {
+    background-color:seagreen;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 8rem;
+    height: 2rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+    text-shadow: .5px .5px .5px black;
 
 }
 
@@ -227,20 +240,52 @@ nav .nav-link:hover, .dropdown:hover .drop-link {
 
 .login-page {
     text-align: center;
+    display:inline-flex;
 }
 
 .reg-page {
     text-align: center;
-
+    display: flex;
+}
+.reg-header {
+    margin-bottom: .5vh;
 }
 
 .reg-page li {
     list-style: none;
+    font-size: .6rem;
+    display: none;
 }
 
+.helptext {
+    font-size: .6rem;
+    display: none;
+}
 
+.form-group {
+    align-items:center;
+    justify-content: center;
+    
+    padding: 1.5rem;
+    text-align: center;
+    
+}
 
+.form-group form {
+    align-items:center;
+    border: 2px seagreen solid;
+    padding: 1.5rem;
+    max-width: 300px;
+}
 
+.form-group form p {
+    display: flexbox;
+}
+
+.form-group form input {
+    border-radius: 15px;
+    align-self: center;
+}
 
 /* CALENDAR PAGE STYLING */
 .calendar-btns {

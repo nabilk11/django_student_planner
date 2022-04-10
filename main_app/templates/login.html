@@ -1,20 +1,33 @@
 {% extends 'base.html' %} 
-
+{% load static %}
 {% block title %}
 Planify | Login to Your Planify Account!
 {% endblock %}
 {% block content %}  
 <div class="login-page">
-<h1 class="header">Login to Planify!</h1>
+    <div class="reg-wrapper">
+        <div class="reg-header">
+            <h1 class="header">Login to Planify!</h1>
+            <p class="sub-header">Get your productivity journey started today!</p>
+            <div class="reg-imgs">
+                <img width="65px" height="65px" src="{% static 'images/user-4-xxl.png' %}" alt="">
+                <img width="65px" height="65px" src="{% static 'images/time-4-xxl.png' %}" alt="">
+                <img width="65px" height="65px" src="{% static 'images/calendar-5-xxl.png' %}" alt="">
+            </div>
+        </div>
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
 
-    <button type="submit">Login</button>
+    <div class="form-group">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
 
-</form>
+        <button class="btn-auth" type="submit">Login</button>
 
-<p>Don't have an account? <a href="{% url 'register' %}">Register Here</a></p>
+    </form>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register Here</a></p>
+    </div>
+</div>
+
 </div>
 {% endblock %}

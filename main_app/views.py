@@ -20,7 +20,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import login
 # Custom Forms
-from .forms import AddTaskForm, TaskCompleteForm, TaskUpdateForm
+from .forms import AddTaskForm, TaskCompleteForm, TaskUpdateForm, RegisterForm
 
 # Create your views here.
 
@@ -37,7 +37,7 @@ class Login(LoginView):
 # Register View
 class Register(FormView):
     template_name = 'register.html'
-    form_class = UserCreationForm
+    form_class = RegisterForm
     success_url = reverse_lazy('calendar')
 
     # form validation
@@ -71,7 +71,7 @@ class ProfileView(DetailView):
         context['collaborators'] = collaborators
         return context
 
-class EditProfileView(UpdateView):
+class EditProfileView(LoginRequiredMixin, UpdateView):
     model = Profile
     template_name = 'edit_profile.html'
     fields = ['bio', 'profile_pic', 'website_url', 'instagram_url', 'twitter_url', 'linkedin_url']
@@ -80,7 +80,7 @@ class EditProfileView(UpdateView):
 
 
 # EDIT USER ACCOUNT INFO VIEW
-class EditAccountView(UpdateView):
+class EditAccountView(LoginRequiredMixin, UpdateView):
     form_class = UserChangeForm
     template_name = 'edit_account.html'
     success_url = reverse_lazy('profile')
