@@ -5,7 +5,7 @@ Planify | Login to Your Planify Account!
 {% endblock %}
 {% block content %}  
 <div class="login-page">
-    <div class="reg-wrapper">
+    <div class="reg-left">
         <div class="reg-header">
             <h1 class="header">Login to Planify!</h1>
             <p class="sub-header">Get your productivity journey started today!</p>
@@ -26,6 +26,13 @@ Planify | Login to Your Planify Account!
 
     </form>
     <p>Don't have an account? <a href="{% url 'register' %}">Register Here</a></p>
+    </div>
+</div>
+
+<div class="login-right">
+    <h3 class="reg-text">Planify is a productivity app that allows you to plan projects, events and day-to-day tasks, using a simply user interface!</h3>
+    <div class="reg-main">
+        <img src="{% static 'images/cal_clock.png' %}" alt="">
     </div>
 </div>
 
