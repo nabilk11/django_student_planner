@@ -3,7 +3,7 @@ from pyexpat import model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import NewsletterEmail, Task
+from .models import Contact, NewsletterEmail, Task
 
 
 # NEW REGISTER FORM
@@ -53,5 +53,10 @@ class NewsletterEmailForm(forms.ModelForm):
         model = NewsletterEmail
         fields = ('email',)
 
-        
+#Contact Form
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ('email', 'subject', 'message')
+               
 

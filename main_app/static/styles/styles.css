@@ -11,11 +11,14 @@ body {
     color: aliceblue;
     margin: 0;
     background: url("../images/prism.png");
+    min-height: 100vh;
+    position: relative;
     
 }
 
 .app {
-    margin: 1rem;
+    padding-bottom: 23rem;
+    margin: 2rem;
 }
 
 .header {
@@ -374,6 +377,7 @@ li {
 
 a {
     color: rgb(191, 211, 247);
+    text-decoration: none;
 }
 
 .cal-item {
@@ -429,10 +433,12 @@ tr .event-list-title {
 footer {
     background-color: black;
     text-align: center;
-    position:fixed;
-    left:0px;
-    bottom:0px;
+    position:absolute;
+    left:0;
+    bottom:0;
     width:100%;
+    height: 23rem;
+    
 }
 .footer-container {
     display: flex;
@@ -459,6 +465,10 @@ footer {
 }
 
 .copyright {
-    margin: auto;
     padding-bottom: 2vh;
+    
+    
 }
+
+
+/* PROFILE PAGFE STYLING */

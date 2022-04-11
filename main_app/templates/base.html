@@ -16,7 +16,6 @@
 <body>
     <nav class="nav-bar">
         <a href="/" class="nav-logo"><img width="180vw"  src="{% static 'images/planify_logo_nav.png' %}" class="nav-logo"></a>
-        <a href="/" class="nav-link">Home</a>
         <a href="/about/" class="nav-link">About</a>
         {% if user.is_authenticated %}
         <div class="dropdown" style="align-items: center; justify-content: center; " >
@@ -46,16 +45,20 @@
             </div>
         </div>
         <a href="/admin/" class="nav-link">Admin</a>
+        <a href="{% url 'contact' %}" class="nav-link">Contact Us</a>
         <a href="{% url 'logout' %}" class="nav-link">Logout</a>
         {% else %}
         <a href="{% url 'login' %}" class="nav-link">Login</a>
         <a href="{% url 'register' %}" class="nav-link">Register</a>
+        <a href="{% url 'contact' %}" class="nav-link">Contact Us</a>
         {% endif %}
+        
     </nav>
     <div class="app">
     {% block content %}
 
     {% endblock %} 
+    <br><br><br>
     </div>
     <footer>
         <div class="footer-container">
@@ -63,7 +66,6 @@
                 <img src="{% static 'images/planify_logo_footer.png' %}" alt="">
             </div>
             <div class="footer-center">
-                
             </div>
             <div class="footer-right">
                 <p><a href="">Privacy Policy</a></p>

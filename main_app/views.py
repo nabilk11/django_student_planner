@@ -18,7 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import login
 # Custom Forms
-from .forms import AddTaskForm, NewsletterEmailForm, TaskCompleteForm, TaskUpdateForm, RegisterForm
+from .forms import AddTaskForm, NewsletterEmailForm, TaskCompleteForm, TaskUpdateForm, RegisterForm, ContactForm
 
 # Create your views here.
 
@@ -310,4 +310,15 @@ def newsletter_view(request):
     form = NewsletterEmailForm
     context = {'form': form}
     return render(request, 'home.html', context)
-     
+
+# Contact Form View
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "Message Submitted!")
+            return render(request, 'contact.html', {'form': ContactForm})
+    form = ContactForm()
+    context = {'form': form}
+    return render(request, 'contact.html', context)
