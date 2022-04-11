@@ -1,6 +1,4 @@
-from dataclasses import fields
-from gc import get_objects
-from pyexpat import model
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
@@ -20,7 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import login
 # Custom Forms
-from .forms import AddTaskForm, TaskCompleteForm, TaskUpdateForm, RegisterForm
+from .forms import AddTaskForm, NewsletterEmailForm, TaskCompleteForm, TaskUpdateForm, RegisterForm
 
 # Create your views here.
 
@@ -299,3 +297,16 @@ class TaskCompleted(LoginRequiredMixin, UpdateView):
     template_name = 'event_detail.html'
     form_class = TaskCompleteForm
     success_url = reverse_lazy('events')
+
+
+# Newsletter Email View
+def newsletter_view(request):
+    if request.method == 'POST':
+        form = NewsletterEmailForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'home.html', {'form': NewsletterEmailForm})
+    form = NewsletterEmailForm
+    context = {'form': form}
+    return render(request, 'home.html', context)
+     

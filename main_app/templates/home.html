@@ -5,11 +5,30 @@ Planify | Home Page
 {% endblock %}
 {% block content %} 
 <div class="home-container">
-    <div class="header-container">
-        <h1 class="header">Welcome to Planify!</h1>
-        <h2 class="sub-header">The only organization tool you will ever need!</h2>
+    <div class="home-upper">
+        <div class="header-container">
+            <h1 class="header">Welcome to Planify!</h1>
+            <h2 class="sub-header">The only organization tool you will ever need!</h2>
+        </div>
+        <div class="newsletter">
+            <h3 class="sub-header">Subscribe to Our Newsletter</h3>
+            <p>As you can see, Planify is continuosly being developed. To learn more about new features, patches, and app updates - be sure to subscribe below!</p>
+        
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn-one">Subscribe</button>
+            </form>
+        </div>
     </div>
 
+    <div class="home-lower">
+
+    </div>
+    
+
+
+                
 
 
     
