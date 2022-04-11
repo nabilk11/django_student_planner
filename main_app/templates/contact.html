@@ -20,7 +20,7 @@ Planify | Home Page
             {% endif %}
         <form action="" method="post">
             {% csrf_token %}
-            {{ form }}
+            {{ form.as_p }}
             <button type="submit" class="btn-add">Submit</button>
         </form>
     </div>

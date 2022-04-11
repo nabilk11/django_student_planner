@@ -471,4 +471,28 @@ footer {
 }
 
 
-/* PROFILE PAGFE STYLING */
+/* PROFILE PAGE STYLING */
+
+
+
+
+
+.phone-field-ext, #id_phone_number_1 {
+    display: none;
+}
+
+
+/* CONTACT PAGE STYLING */
+.contact-form {
+    text-align: center;
+    display: block;
+    
+}
+
+input[type=text], input[type=email], textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+   }
+

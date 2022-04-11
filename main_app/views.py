@@ -73,7 +73,10 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     model = Profile
     template_name = 'edit_profile.html'
     fields = ['bio', 'profile_pic', 'website_url', 'instagram_url', 'twitter_url', 'linkedin_url']
-    success_url = reverse_lazy('profile')
+    # success_url = reverse_lazy('profile')
+
+    def get_success_url(self, *args):
+        return reverse("profile", args=(str(self.request.user.id)))
 
 
 
@@ -81,10 +84,14 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 class EditAccountView(LoginRequiredMixin, UpdateView):
     form_class = UserChangeForm
     template_name = 'edit_account.html'
-    success_url = reverse_lazy('profile')
+    # success_url = reverse_lazy('profile')
     
     def get_object(self):
         return self.request.user
+
+    def get_success_url(self, *args):
+        return reverse("profile", args=(str(self.request.user.id)))
+    
 
 ########## TEMPLATE VIEWS ##########
 

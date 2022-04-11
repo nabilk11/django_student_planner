@@ -26,6 +26,9 @@ Planify | Profile
     <div class="profile-info">
         <div class="profile-contact">
             <h2 class="sub-header">Contact Info</h2>
+            {% if profile.user.first_name and profile.user.last_name %}
+            <h3 class="profile-item">{{ profile.user.first_name }} {{profile.user.last_name}}</h3>
+            {% endif %}
             <p class="profile-item"><strong>Email:</strong><br>
                 {{ current_user.user.email }}</p>
             {% if current_user.website_url %}
