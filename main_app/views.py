@@ -305,6 +305,7 @@ def newsletter_view(request):
         form = NewsletterEmailForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.info(request, "You've Been Subscribed!")
             return render(request, 'home.html', {'form': NewsletterEmailForm})
     form = NewsletterEmailForm
     context = {'form': form}

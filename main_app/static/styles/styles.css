@@ -310,6 +310,19 @@ nav .nav-link:hover, .dropdown:hover .drop-link {
     box-shadow: 2px 2px 2px black;
 }
 
+/* HOME PAGE STYLING */
+
+
+.message-text {
+    font-size: 1rem;
+    color: seagreen;
+    font-style: italic;
+
+}
+
+
+
+
 /* CALENDAR PAGE STYLING */
 .calendar-btns {
     margin-bottom: 3.5vh;
@@ -416,6 +429,10 @@ tr .event-list-title {
 footer {
     background-color: black;
     text-align: center;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
 }
 .footer-container {
     display: flex;
