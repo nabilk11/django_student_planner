@@ -24,29 +24,36 @@ Planify | Profile
         {% endif %}
     </div>
     <div class="profile-info">
-        <h2 class="sub-header">Contact Info</h2>
-        <p class="profile-item"><strong>Email:</strong><br>
-            {{ current_user.user.email }}</p>
-        {% if current_user.website_url %}
-            <a href="{{ current_user.website_url }}"><strong>Website</strong></a>
-        {% endif %}
-        
-        {% if current_user.instagram_url %}
-            <a href="{{ current_user.instagram_url }}"><strong>Instagram</strong></a>
-        {% endif %}
+        <div class="profile-contact">
+            <h2 class="sub-header">Contact Info</h2>
+            {% if profile.user.first_name and profile.user.last_name %}
+            <h3 class="profile-item">{{ profile.user.first_name }} {{profile.user.last_name}}</h3>
+            {% endif %}
+            <p class="profile-item"><strong>Email:</strong><br>
+                {{ current_user.user.email }}</p>
+            {% if current_user.website_url %}
+           
+                <a href="{{ current_user.website_url }}"><img style="margin: 3px;" width="40px" src="{% static 'images/website-xxl.png' %}" alt=""></a>
+            {% endif %}
+            
+            {% if current_user.instagram_url %}
+                <a href="{{ current_user.instagram_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/instagram-xxl.png' %}" alt=""></a>
+            {% endif %}
 
-        {% if current_user.twitter_url %}
-            <a href="{{ current_user.twitter_url }}"><strong>Twitter</strong></a>
-        {% endif %}
+            {% if current_user.twitter_url %}
+                <a href="{{ current_user.twitter_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/twitter-xxl.png' %}" alt=""></a>
+            {% endif %}
 
-        {% if current_user.linkedin_url %}
-            <a href="{{ current_user.linkedin_url }}"><strong>LinkedIn</strong></a>
-        {% endif %}
-        
-        {% if user.profile.bio %}
-            <h2 class="sub-header">Bio</h2>
-            <p class="profile-bio"><strong>{{ current_user.bio }}</strong></p>
-        {% endif %}
+            {% if current_user.linkedin_url %}
+                <a href="{{ current_user.linkedin_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/linkedin-xxl.png' %}" alt=""></a>
+            {% endif %}
+        </div>
+        <div class="profile-bio">
+            {% if user.profile.bio %}
+                <h2 class="sub-header">Bio</h2>
+                <p class="bio"><strong>{{ current_user.bio }}</strong></p>
+            {% endif %}
+        </div>
     </div>
 
     <div class="user-events">

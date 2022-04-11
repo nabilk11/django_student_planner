@@ -15,9 +15,10 @@ urlpatterns = [
     #LogoutView imported straight into urls.py
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
     #Other Paths
-    path('', views.Home.as_view(), name="home" ),
+    path('', views.newsletter_view, name="home" ),
     path('about/', views.About.as_view(), name="about" ),
-    # Events | Calendar is for clanedar view for e
+    path('contact/', views.contact_view, name="contact" ),
+    # Events | Calendar is for clanedar view 
     path('calendar/', views.CalendarView.as_view(), name="calendar" ),
     path('events/', views.EventList.as_view(), name="events" ),
     path('events/<int:pk>/', views.EventDetail.as_view(), name="event_detail" ),

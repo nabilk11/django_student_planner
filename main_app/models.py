@@ -1,4 +1,6 @@
 from asyncio import Task
+import email
+from email import message
 from django.db import models
 from django.contrib.auth.models import User
 #phone_field from django-phone-field installation
@@ -77,3 +79,20 @@ class Task(models.Model):
 
     class Meta:
         ordering = ['completed']
+
+
+# Newsletter Email Model
+class NewsletterEmail(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.email
+
+# Contact Form Model
+class Contact(models.Model):
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.email

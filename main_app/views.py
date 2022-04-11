@@ -1,6 +1,4 @@
-from dataclasses import fields
-from gc import get_objects
-from pyexpat import model
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic.base import TemplateView
@@ -20,7 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import login
 # Custom Forms
-from .forms import AddTaskForm, TaskCompleteForm, TaskUpdateForm, RegisterForm
+from .forms import AddTaskForm, NewsletterEmailForm, TaskCompleteForm, TaskUpdateForm, RegisterForm, ContactForm
 
 # Create your views here.
 
@@ -75,7 +73,10 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
     model = Profile
     template_name = 'edit_profile.html'
     fields = ['bio', 'profile_pic', 'website_url', 'instagram_url', 'twitter_url', 'linkedin_url']
-    success_url = reverse_lazy('profile')
+    # success_url = reverse_lazy('profile')
+
+    def get_success_url(self, *args):
+        return reverse("profile", args=(str(self.request.user.id)))
 
 
 
@@ -83,10 +84,14 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 class EditAccountView(LoginRequiredMixin, UpdateView):
     form_class = UserChangeForm
     template_name = 'edit_account.html'
-    success_url = reverse_lazy('profile')
+    # success_url = reverse_lazy('profile')
     
     def get_object(self):
         return self.request.user
+
+    def get_success_url(self, *args):
+        return reverse("profile", args=(str(self.request.user.id)))
+    
 
 ########## TEMPLATE VIEWS ##########
 
@@ -299,3 +304,28 @@ class TaskCompleted(LoginRequiredMixin, UpdateView):
     template_name = 'event_detail.html'
     form_class = TaskCompleteForm
     success_url = reverse_lazy('events')
+
+
+# Newsletter Email View
+def newsletter_view(request):
+    if request.method == 'POST':
+        form = NewsletterEmailForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "You've Been Subscribed!")
+            return render(request, 'home.html', {'form': NewsletterEmailForm})
+    form = NewsletterEmailForm
+    context = {'form': form}
+    return render(request, 'home.html', context)
+
+# Contact Form View
+def contact_view(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, "Message Submitted!")
+            return render(request, 'contact.html', {'form': ContactForm})
+    form = ContactForm()
+    context = {'form': form}
+    return render(request, 'contact.html', context)
