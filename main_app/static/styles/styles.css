@@ -409,3 +409,39 @@ tr .event-list-title {
 .update-form input {
     max-width: 20vw;
 }
+
+
+/* FOOTER STYLING */
+
+footer {
+    background-color: black;
+    text-align: center;
+}
+.footer-container {
+    display: flex;
+}
+
+.footer-right {
+    flex: 3;
+    align-items: flex-end;
+    margin: auto;
+
+}
+
+.footer-center {
+    flex: 4;
+    margin: auto;
+
+}
+
+.footer-left {
+    flex: 3;
+    margin: auto;
+
+
+}
+
+.copyright {
+    margin: auto;
+    padding-bottom: 2vh;
+}
