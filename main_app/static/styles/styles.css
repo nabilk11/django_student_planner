@@ -8,6 +8,7 @@
 }
 
 body {
+    color: aliceblue;
     margin: 0;
     background: url("../images/prism.png");
     
@@ -143,6 +144,24 @@ body {
     box-shadow: 3px 3px 3px black;
     cursor: pointer;
     text-shadow: .5px .5px .5px black;
+}
+
+.btn-auth {
+    background-color:seagreen;
+    font-weight: bold;
+    color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 8rem;
+    height: 2rem;
+    box-shadow: 3px 3px 3px black;
+    cursor: pointer;
+    text-shadow: .5px .5px .5px black;
+
+}
+.btn-auth:hover {
+    transform: scale(1.08);
+    transition: .3s all ease;
 
 }
 
@@ -220,6 +239,76 @@ nav .nav-link:hover, .dropdown:hover .drop-link {
 #drop-item {
     margin-top: .25em;
   }
+
+
+/* LOGIN/REGISTER PAGE STYLING */
+
+.login-page {
+    text-align: center;
+    display:inline-flex;
+}
+
+.reg-page {
+    text-align: center;
+    display: inline-flex;
+}
+
+.reg-left {
+    flex: 4;
+}
+
+.reg-right {
+    flex: 6;
+    margin-top: 21vh;
+}
+
+.login-right {
+    flex: 6;
+    margin-top: 6vh;
+
+}
+
+.reg-header {
+    margin-bottom: .5vh;
+}
+
+.reg-page li {
+    list-style: none;
+    font-size: .6rem;
+    display: none;
+}
+
+.helptext {
+    font-size: .6rem;
+    display: none;
+}
+
+.form-group {
+    align-items:center;
+    justify-content: center;
+    
+    padding: 1.5rem;
+    text-align: center;
+    
+}
+
+.form-group form {
+    align-items:center;
+    border: 2px seagreen solid;
+    padding: 1.5rem;
+    max-width: 300px;
+}
+
+.form-group form p {
+    display: flexbox;
+}
+
+.form-group form input {
+    border-radius: 15px;
+    align-self: center;
+    border: 2px black solid;
+    box-shadow: 2px 2px 2px black;
+}
 
 /* CALENDAR PAGE STYLING */
 .calendar-btns {
@@ -319,4 +408,40 @@ tr .event-list-title {
 
 .update-form input {
     max-width: 20vw;
+}
+
+
+/* FOOTER STYLING */
+
+footer {
+    background-color: black;
+    text-align: center;
+}
+.footer-container {
+    display: flex;
+}
+
+.footer-right {
+    flex: 3;
+    align-items: flex-end;
+    margin: auto;
+
+}
+
+.footer-center {
+    flex: 4;
+    margin: auto;
+
+}
+
+.footer-left {
+    flex: 3;
+    margin: auto;
+
+
+}
+
+.copyright {
+    margin: auto;
+    padding-bottom: 2vh;
 }

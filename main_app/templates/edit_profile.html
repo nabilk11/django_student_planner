@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+Planify | Edit Profile
+{% endblock %}
+{% block content %} 
+<div class="reg-page">
+<h1 class="header">Edit Your Profile!</h1>
+
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{form.as_p}}
+
+    <button class="btn-one" type="submit">Update</button>
+
+</form>
+
+
+</div> 
+{% endblock %}

@@ -1,19 +1,43 @@
 {% extends 'base.html' %} 
+{% load static %}
 
 {% block title %}
 Planify | Register for a Planify Account!
 {% endblock %}
-{% block content %}  
-<h1 class="header">Signup for Planify!</h1>
+{% block content %} 
+<div class="reg-page">
+    <div class="reg-wrapper">
+        <div class="reg-header">
+            <h1 class="header">Signup for Planify!</h1>
+            <p class="sub-header">Get your productivity journey started today!</p>
+            <div class="reg-imgs">
+                <img width="65px" height="65px" src="{% static 'images/add-user-xxl.png' %}" alt="">
+                <img width="65px" height="65px" src="{% static 'images/time-4-xxl.png' %}" alt="">
+                <img width="65px" height="65px" src="{% static 'images/calendar-5-xxl.png' %}" alt="">
+            </div>
+        </div>
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
 
-    <button type="submit">Register</button>
+    <div class="form-group">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
 
-</form>
+            <button class="btn-auth" type="submit">Register</button>
 
-<p>Already have an account? <a href="{% url 'login' %}">Login Here</a></p>
+        </form>
 
+        <p>Already have an account? <a href="{% url 'login' %}">Login Here</a></p>
+    </div>
+</div>
+
+    <div class="reg-right">
+        <h3 class="reg-text">Planify is a productivity app that allows you to plan projects, events and day-to-day tasks, using a simply user interface!</h3>
+        <div class="reg-main">
+            <img src="{% static 'images/cal_clock.png' %}" alt="">
+        </div>
+    </div>
+
+
+</div> 
 {% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block title %}
+Planify | Profile
+{% endblock %}
+{% block content %} 
+<div class="profile-page">
+    
+    <div class="header-container">  
+        <h1 class="header">{{ current_user }}'s Profile</h1>
+        {% if current_user.profile_pic %}
+        <span><img style="border-radius: 50%; object-fit: cover;" src="{{ current_user.profile_pic.url }}" width="150px" height="150px" alt=""></span>
+        {% else %}
+        <span><img style="border-radius: 50%; object-fit: cover;" src="{% static 'images/default_pf.png' %}" width="150px" height="150px" alt=""></span>
+
+        {% endif %}
+        
+        <p><a href="{% url 'events' %}">Your Events List</a></p>
+        <p><a href="{% url 'calendar' %}">View Your Calendar</a></p>
+        {% if user.id == profile.user.id %}
+        <a href="{% url 'edit_profile' user.id %}"> <button class="btn-one" >Edit Profile</button> </a>
+        <a href="{% url 'edit_account' user.id %}"> <button class="btn-del" >Edit Account</button> </a>
+        {% endif %}
+    </div>
+    <div class="profile-info">
+        <h2 class="sub-header">Contact Info</h2>
+        <p class="profile-item"><strong>Email:</strong><br>
+            {{ current_user.user.email }}</p>
+        {% if current_user.website_url %}
+            <a href="{{ current_user.website_url }}"><strong>Website</strong></a>
+        {% endif %}
+        
+        {% if current_user.instagram_url %}
+            <a href="{{ current_user.instagram_url }}"><strong>Instagram</strong></a>
+        {% endif %}
+
+        {% if current_user.twitter_url %}
+            <a href="{{ current_user.twitter_url }}"><strong>Twitter</strong></a>
+        {% endif %}
+
+        {% if current_user.linkedin_url %}
+            <a href="{{ current_user.linkedin_url }}"><strong>LinkedIn</strong></a>
+        {% endif %}
+        
+        {% if user.profile.bio %}
+            <h2 class="sub-header">Bio</h2>
+            <p class="profile-bio"><strong>{{ current_user.bio }}</strong></p>
+        {% endif %}
+    </div>
+
+    <div class="user-events">
+        <h2 class="sub-header">Current Events/Projects</h2>
+        {% for event in events %}
+        <ul style="list-style: none;" >
+            <li><a href="{% url 'event_detail' event.id%}" class="event-item-pf">{{ event.title }}</a></li>
+        </ul>
+        {% empty %}
+        <p>No Pending Events!</p>
+        {% endfor %}
+        <a href="{% url 'event_create' %}"><button class="btn-add" >Add Event</button></a>
+    </div>
+
+    <div class="team">
+        <h2 class="sub-header">Your Collaborator Team</h2>
+        {% for c in collaborators %}
+        <ul style="list-style: none;" >
+            <li><a href="{% url 'collaborator_detail' c.id%}" class="event-item-pf">{{ c.name }}</a></li>
+        </ul>
+        {% empty %}
+        <p>No Team Members Yet!</p>
+        {% endfor %}
+        <a href="{% url 'add_collaborator' %}"><button class="btn-add" >Add Event</button></a>
+    </div>
+
+
+
+
+</div>
+{% endblock %}

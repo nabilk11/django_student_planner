@@ -15,14 +15,23 @@
 </head>
 <body>
     <nav class="nav-bar">
-        <a href="/" class="nav-logo"><h1 class="nav-logo">.planify</h1></a>
+        <a href="/" class="nav-logo"><img width="180vw"  src="{% static 'images/planify_logo_nav.png' %}" class="nav-logo"></a>
         <a href="/" class="nav-link">Home</a>
         <a href="/about/" class="nav-link">About</a>
         {% if user.is_authenticated %}
+        <div class="dropdown" style="align-items: center; justify-content: center; " >
+            <a href="{% url 'profile' user.id%}" class="drop-link">Profile
+                <span style="font-size: 10px;" class=""> ▼ </span> 
+            </a>
+            <div class="drop-content">
+                <a href="{% url 'edit_profile' user.id%}" id="drop-item" class="nav-link">Edit Profile</a>
+                <a href="{% url 'edit_account' user.id%}" id="drop-item" class="nav-link">Edit Account</a>
+            </div>
+        </div>
         <a href="/calendar/" class="nav-link">Calendar</a>
         <div class="dropdown">
             <a href="/events/" class="drop-link">Events
-                <i class="fa fa-caret-down"></i> 
+                <span style="font-size: 10px;" class=""> ▼ </span> 
             </a>
             <div class="drop-content">
                 <a href="/events/new/" id="drop-item" class="nav-link">Add Event</a>
@@ -30,7 +39,7 @@
         </div>
         <div class="dropdown">
             <a href="/collaborators/" class="drop-link">Collaborators
-                <i class="fa fa-caret-down"></i> 
+                <span style="font-size: 10px;" class=""> ▼ </span>  
             </a>
             <div class="drop-content">
                 <a href="/collaborators/new/" id="drop-item" class="nav-link">Add Collaborator</a>
@@ -48,5 +57,22 @@
 
     {% endblock %} 
     </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <img src="{% static 'images/planify_logo_footer.png' %}" alt="">
+            </div>
+            <div class="footer-center">
+                <p><a href="mailto:hege@example.com">Subscribe to Our Newsletter</a></p>
+
+            </div>
+            <div class="footer-right">
+                <p><a href="">Privacy Policy</a></p>
+                <p><a href="">Terms & Conditions</a></p>
+                <p><a href="">Contact Us</a></p>
+            </div>
+        </div>
+        <p class="copyright" >Ⓒ Copyright planify 2022</p>
+      </footer>
 </body>
 </html>
