@@ -1,21 +1,21 @@
 {% extends 'base.html' %} 
 
 {% block title %}
-Planify | Edit Profile
+Planify | Create Profile
 {% endblock %}
 {% block content %} 
 
 
 <div class="edit-profile">
     
-    <h1 class="header">Edit Your Profile!</h1>
-    <span class="sub-text" >Update your user profile here. To edit your account information, click </span><a href="{% url 'edit_account' user.id%}"><strong style="color: royalblue;" >here.</strong></a>
+    <h1 class="header">First Things First!</h1>
+    <span class="sub-text" >Before you begin using Planify, create your user profile!</span>
     <div class="form-two">
         <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}
             {{form.as_p}}
-            <button class="btn-one" type="submit">Update</button>
+            <button class="btn-one" type="submit">Create!</button>
         </form>
     </div>
 </div> 

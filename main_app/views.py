@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
@@ -36,7 +37,7 @@ class Login(LoginView):
 class Register(FormView):
     template_name = 'register.html'
     form_class = RegisterForm
-    success_url = reverse_lazy('calendar')
+    success_url = reverse_lazy('create_profile')
 
     # form validation
     def form_valid(self, form):
@@ -68,6 +69,19 @@ class ProfileView(DetailView):
         context['events'] = events
         context['collaborators'] = collaborators
         return context
+
+class ProfileCreate(LoginRequiredMixin, CreateView):
+    model = Profile
+    template_name = 'create_profile.html'
+    fields = ['bio', 'profile_pic', 'website_url', 'instagram_url', 'twitter_url', 'linkedin_url']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ProfileCreate, self).form_valid(form)
+
+    def get_success_url(self, *args):
+        return reverse("profile", args=(str(self.request.user.id)))
+
 
 class EditProfileView(LoginRequiredMixin, UpdateView):
     model = Profile

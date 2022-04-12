@@ -40,6 +40,10 @@ Planify | Profile
                 <a href="{{ current_user.instagram_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/instagram-xxl.png' %}" alt=""></a>
             {% endif %}
 
+            {% if current_user.facebook_url %}
+                <a href="{{ current_user.facebook_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/facebook-xxl.png' %}" alt=""></a>
+            {% endif %}
+
             {% if current_user.twitter_url %}
                 <a href="{{ current_user.twitter_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/twitter-xxl.png' %}" alt=""></a>
             {% endif %}
@@ -77,7 +81,7 @@ Planify | Profile
         {% empty %}
         <p>No Team Members Yet!</p>
         {% endfor %}
-        <a href="{% url 'add_collaborator' %}"><button class="btn-add" >Add Event</button></a>
+        <a href="{% url 'add_collaborator' %}"><button class="btn-add" >Add Collaborator</button></a>
     </div>
 
 

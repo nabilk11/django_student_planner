@@ -496,7 +496,7 @@ input[type=text], input[type=email], textarea {
     display: inline-block;
    }
 
-/* EDIT ACCOUNT PAGE */
+/* EDIT ACCOUNT/PROFILE PAGE */
 
 .edit-account .helptext, 
 .edit-account form p:nth-child(7) label,
@@ -508,3 +508,14 @@ label[for=id_groups] {
     display: none;
 }
 
+
+.form-two {
+    margin: auto;
+    text-align: center;
+    width: 40vw;
+    margin-top: 6vh;
+}
+
+.sub-text {
+    padding-bottom: 5vh;
+}

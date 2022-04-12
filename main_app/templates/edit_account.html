@@ -7,16 +7,18 @@ Planify | Edit Account Info
 
 <div class="edit-account">
     <h1 class="header">Edit Account!</h1>
-    <span>Update your account information here. To edit your user profile, click </span><a href="{% url 'edit_profile' user.id%}">here.</a>
-    <form action="" method="post">
-        {% csrf_token %}
+    <span class="sub-text" >Update your account information here. To edit your user profile, click </span><a href="{% url 'edit_profile' user.id%}"><strong style="color: royalblue;">here.</strong></a>
+    <div class="form-two">
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            {{form.as_p}}
         
-        {{form.as_p}}
-    
-        <button style="margin-bottom: 3vh;" class="btn-one" type="submit">Update</button>
-    </form>
+            <button style="margin-bottom: 3vh;" class="btn-one" type="submit">Update</button>
+        </form>
 
-    <a href="{% url 'change_password' user.id %}"><button class="btn-del">Change Password</button></a>
+        <a href="{% url 'change_password' user.id %}"><button class="btn-del">Change Password</button></a>
+    </div>
 
 </div>
 
