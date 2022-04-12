@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='collaborator',
             name='phone_number',
             field=models.CharField(blank=True, max_length=60, null=True, validators=[django.core.validators.RegexValidator(regex='(\\d{3}[-\\.\\s]??\\d{3}[-\\.\\s]??\\d{4}|\\(\\d{3}\\)\\s*\\d{3}[-\\.\\s]??\\d{4}|\\d{3}[-\\.\\s]??\\d{4})')]),
