@@ -1,10 +1,9 @@
-from asyncio import Task
-import email
-from email import message
 from django.db import models
 from django.contrib.auth.models import User
 #phone_field from django-phone-field installation
-from phone_field import PhoneField
+# from phone_field import PhoneField #not registering on deployment
+from django.core.validators import RegexValidator
+
 
 
 
@@ -26,11 +25,12 @@ class Profile(models.Model):
 
 #Collaborator Model
 class Collaborator(models.Model):
+    phone_regex = RegexValidator(regex=r'(\d{3}[-\.\s]??\d{3}[-\.\s]??\d{4}|\(\d{3}\)\s*\d{3}[-\.\s]??\d{4}|\d{3}[-\.\s]??\d{4})')
     name = models.CharField(max_length=55)
     email = models.EmailField(max_length=75)
-    phone_number = PhoneField(blank=True)
+    phone_number = models.CharField(validators=[phone_regex], max_length=60, null=True, blank=True)
     role = models.CharField(max_length=255)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
