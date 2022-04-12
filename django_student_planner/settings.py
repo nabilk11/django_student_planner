@@ -53,7 +53,8 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # DEBUG = True
 
 ALLOWED_HOSTS = [
-    'django-planify.herokuapp.com'
+    'django-planify.herokuapp.com',
+    # '127.0.0.1'
 ]
 
 # Application definition
@@ -66,8 +67,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app',
-    #Additional Apps
-    'phone_field',
+    
+    
 ]
 
 MIDDLEWARE = [
