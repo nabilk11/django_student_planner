@@ -18,7 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import login
 # Custom Forms
-from .forms import AddTaskForm, NewsletterEmailForm, TaskCompleteForm, TaskUpdateForm, RegisterForm, ContactForm
+from .forms import AddTaskForm, EditAccountForm, NewsletterEmailForm, TaskCompleteForm, TaskUpdateForm, RegisterForm, ContactForm
 
 # Create your views here.
 
@@ -82,7 +82,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 
 # EDIT USER ACCOUNT INFO VIEW
 class EditAccountView(LoginRequiredMixin, UpdateView):
-    form_class = UserChangeForm
+    form_class = EditAccountForm
     template_name = 'edit_account.html'
     # success_url = reverse_lazy('profile')
     

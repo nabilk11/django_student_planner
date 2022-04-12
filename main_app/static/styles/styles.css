@@ -281,7 +281,7 @@ nav .nav-link:hover, .dropdown:hover .drop-link {
     display: none;
 }
 
-.helptext {
+.form-group .helptext {
     font-size: .6rem;
     display: none;
 }
@@ -495,4 +495,16 @@ input[type=text], input[type=email], textarea {
     margin: 8px 0;
     display: inline-block;
    }
+
+/* EDIT ACCOUNT PAGE */
+
+.edit-account .helptext, 
+.edit-account form p:nth-child(7) label,
+.edit-account #id_password,
+#id_user_permissions,
+label[for=id_user_permissions],
+#id_groups,
+label[for=id_groups] {
+    display: none;
+}
 

@@ -1,19 +1,21 @@
 from unicodedata import name
 from django.urls import path
 from . import views
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, PasswordChangeView
 
 
 urlpatterns = [
     # AUTH URLS - Login + Register
     path('login/', views.Login.as_view(), name="login"),
     path('register/', views.Register.as_view(), name="register"),
+    #LogoutView & PasswordChangeView imported straight into urls.py
+    path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
+    path('<int:pk>/password/', PasswordChangeView.as_view(), name="change_password"),
     # User Profile Views
     path('<int:pk>/edit_account/', views.EditAccountView.as_view(), name="edit_account"),
     path('<int:pk>/profile/', views.ProfileView.as_view(), name="profile"),
     path('<int:pk>/profile/edit/', views.EditProfileView.as_view(), name="edit_profile"),
-    #LogoutView imported straight into urls.py
-    path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
+    
     #Other Paths
     path('', views.newsletter_view, name="home" ),
     path('about/', views.About.as_view(), name="about" ),
