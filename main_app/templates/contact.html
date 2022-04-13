@@ -18,11 +18,13 @@ Planify | Home Page
                 {% endfor %}
             </div>
             {% endif %}
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn-add">Submit</button>
-        </form>
+            <div class="form-two">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn-add">Submit</button>
+                </form>
+            </div>
     </div>
 </div>
 

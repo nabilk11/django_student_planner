@@ -7,6 +7,7 @@ Planify | Event Task Details
 
 
 <h1 class="header" >{{ task }}</h1>
+<p>Event: {{ task.event }}</p>
 <a href="{{request.META.HTTP_REFERER|escape}}">Back to Event</a>
 
 <h4>{{ task.description }}</h4>
@@ -14,8 +15,8 @@ Planify | Event Task Details
 <hr>
 <div class="detail-actions">
 <h4>Choose an Action</h4>
-    <a href="{% url 'task_update' task.id%}" class="action">Edit</a>
-    <a href="{% url 'task_delete' task.id%}" class="action">Delete</a>
+    <a href="{% url 'task_update' task.id%}" class="action"><button class="btn-sm-g">Edit</button></a>
+    <a href="{% url 'task_delete' task.id%}" class="action"><button class="btn-sm-del">Delete</button></a>
 </div>
 
 {% endblock %}

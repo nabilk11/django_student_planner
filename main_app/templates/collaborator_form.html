@@ -10,12 +10,15 @@ Planify | Add New Collaborator
     <p><a href="{% url 'calendar' %}">Calendar View</a> </p>
 </div>
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_table }}
+<div class="form-two">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+    
+        <button class="btn-add" type="submit" >Add Collaborator</button>
+    </form>
+</div>
 
-    <button class="btn-add" type="submit" >Add Collaborator</button>
-</form>
 
 
 {% endblock %}

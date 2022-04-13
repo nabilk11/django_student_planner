@@ -9,13 +9,14 @@ Planify | Edit Event
     <p><a href="{% url 'event_detail' event.id %}">Cancel</a> </p>
 </div>
 
-<form class="update-form" action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+<div class="form-two">
+    <form class="update-form" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-    <button class="btn-up" type="submit" >Update</button>
-</form>
-<a href="{% url 'event_delete' event.id %}"><button class="btn-del" >Delete</button></a>
-
+        <button class="btn-up" type="submit" >Update</button>
+    </form>
+    <a href="{% url 'event_delete' event.id %}"><button class="btn-del" >Delete</button></a>
+</div>
 
 {% endblock %}

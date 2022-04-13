@@ -8,14 +8,14 @@ Planify | Edit Task
     <h1 class="header">Edit Task</h1>
     <p><a href="{{request.META.HTTP_REFERER|escape}}">Cancel</a> </p>
 </div>
-
+<div class="form-two">
 <form class="update-form" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
 
     <button class="btn-up" type="submit" >Update</button>
 </form>
-<a href="{}"><button class="btn-del" >Delete</button></a>
+<a href="{% url 'task_delete' task.id%}"><button class="btn-del" >Delete</button></a>
 
 
 {% endblock %}
