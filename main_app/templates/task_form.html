@@ -9,13 +9,13 @@ Planify | Add New Task
     <p><a href="{% url 'events' %}">Back to Event List</a> </p>
     <p><a href="{{request.META.HTTP_REFERER|escape}}">Cancel</a> </p>
 </div>
+<div class="form-two">
+    <form class="new-event-form" action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-<form class="new-event-form" action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button class="btn-add" type="submit">Add Task</button>
-</form>
-
+        <button class="btn-add" type="submit">Add Task</button>
+    </form>
+</div>
 
 {% endblock %}

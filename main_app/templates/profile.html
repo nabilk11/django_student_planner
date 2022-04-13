@@ -6,80 +6,156 @@ Planify | Profile
 {% endblock %}
 {% block content %} 
 <div class="profile-page">
-    
-    <div class="header-container">  
-        <h1 class="header">{{ current_user }}'s Profile</h1>
-        {% if current_user.profile_pic %}
-        <span><img style="border-radius: 50%; object-fit: cover;" src="{{ current_user.profile_pic.url }}" width="150px" height="150px" alt=""></span>
-        {% else %}
-        <span><img style="border-radius: 50%; object-fit: cover;" src="{% static 'images/default_pf.png' %}" width="150px" height="150px" alt=""></span>
 
-        {% endif %}
-        
-        <p><a href="{% url 'events' %}">Your Events List</a></p>
-        <p><a href="{% url 'calendar' %}">View Your Calendar</a></p>
-        {% if user.id == profile.user.id %}
-        <a href="{% url 'edit_profile' user.id %}"> <button class="btn-one" >Edit Profile</button> </a>
-        <a href="{% url 'edit_account' user.id %}"> <button class="btn-del" >Edit Account</button> </a>
-        {% endif %}
-    </div>
-    <div class="profile-info">
-        <div class="profile-contact">
-            <h2 class="sub-header">Contact Info</h2>
-            {% if profile.user.first_name and profile.user.last_name %}
-            <h3 class="profile-item">{{ profile.user.first_name }} {{profile.user.last_name}}</h3>
-            {% endif %}
-            <p class="profile-item"><strong>Email:</strong><br>
-                {{ current_user.user.email }}</p>
-            {% if current_user.website_url %}
-           
-                <a href="{{ current_user.website_url }}"><img style="margin: 3px;" width="40px" src="{% static 'images/website-xxl.png' %}" alt=""></a>
+    <div class="profile-upper">
+        <div class="header-container">  
+            <h1 class="header">{{ current_user }}'s Profile</h1>
+            {% if current_user.profile_pic %}
+            <span><img style="border-radius: 50%; object-fit: cover;" src="{{ current_user.profile_pic.url }}" width="150px" height="150px" alt=""></span>
+            {% else %}
+            <span><img style="border-radius: 50%; object-fit: cover;" src="{% static 'images/default_pf.png' %}" width="150px" height="150px" alt=""></span>
+    
             {% endif %}
             
-            {% if current_user.instagram_url %}
-                <a href="{{ current_user.instagram_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/instagram-xxl.png' %}" alt=""></a>
-            {% endif %}
-
-            {% if current_user.twitter_url %}
-                <a href="{{ current_user.twitter_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/twitter-xxl.png' %}" alt=""></a>
-            {% endif %}
-
-            {% if current_user.linkedin_url %}
-                <a href="{{ current_user.linkedin_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/linkedin-xxl.png' %}" alt=""></a>
-            {% endif %}
-        </div>
-        <div class="profile-bio">
-            {% if user.profile.bio %}
-                <h2 class="sub-header">Bio</h2>
-                <p class="bio"><strong>{{ current_user.bio }}</strong></p>
+            <p><a style="color: royalblue; font-weight:500;" href="{% url 'events' %}">Your Events List</a></p>
+            <p  ><a style="color: royalblue; font-weight:500;" href="{% url 'calendar' %}">View Your Calendar</a></p>
+            {% if user.id == profile.user.id %}
+            <a href="{% url 'edit_profile' user.id %}"> <button class="btn-one" >Edit Profile</button> </a>
+            <a href="{% url 'edit_account' user.id %}"> <button class="btn-del" >Edit Account</button> </a>
             {% endif %}
         </div>
     </div>
 
-    <div class="user-events">
-        <h2 class="sub-header">Current Events/Projects</h2>
-        {% for event in events %}
-        <ul style="list-style: none;" >
-            <li><a href="{% url 'event_detail' event.id%}" class="event-item-pf">{{ event.title }}</a></li>
-        </ul>
-        {% empty %}
-        <p>No Pending Events!</p>
-        {% endfor %}
-        <a href="{% url 'event_create' %}"><button class="btn-add" >Add Event</button></a>
-    </div>
+    <div class="profile-lower">
+        <div style="border: 1px rgb(63, 63, 63) solid; background-color: rgb(63, 63, 63);" class="profile-left">
+            <div class="user-events">
+                <h2 class="sub-header">Current Events/Projects</h2>
+                {% for event in events %}
+                <ul style="list-style: none;" >
+                    <li><a href="{% url 'event_detail' event.id%}" class="event-item-pf">{{ event.title }}</a></li>
+                </ul>
+                {% empty %}
+                <p>No Pending Events!</p>
+                {% endfor %}
+                <a href="{% url 'event_create' %}"><button class="btn-add" >Add Event</button></a>
+            </div>
+        
+            <div style="margin-top: 3vh;" class="team">
+                <h2 class="sub-header">Your Collaborator Team</h2>
+                {% for c in collaborators %}
+                <ul style="list-style: none;" >
+                    <li><a href="{% url 'collaborator_detail' c.id%}" class="event-item-pf">{{ c.name }}</a></li>
+                </ul>
+                {% empty %}
+                <p>No Team Members Yet!</p>
+                {% endfor %}
+                <a href="{% url 'add_collaborator' %}"><button class="btn-add" >Add Collaborator</button></a>
+            </div>
+    
+        
+            
+        </div>
+    
+        <div style="border: 1px rgb(89, 87, 87) solid; background-color: rgb(89, 87, 87);" class="profile-center">
+            <div class="profile-info">
+                <div class="profile-contact">
+                    <h2 class="sub-header">Contact Info</h2>
+                    {% if profile.user.first_name and profile.user.last_name %}
+                    <h3 class="profile-item">{{ profile.user.first_name }} {{profile.user.last_name}}</h3>
+                    {% endif %}
+        
+                    {% if current_user.user.email %}
+                    <p class="profile-item"><strong>Email:</strong><br>
+                       <a href="mailto:{{ current_user.user.email }}">{{ current_user.user.email }}</a></p>
+                    {% endif %}
+        
+                    {% if current_user.website_url %}
+                        <a href="{{ current_user.website_url }}"><img style="margin: 3px;" width="40px" src="{% static 'images/website-xxl.png' %}" alt=""></a>
+                    {% endif %}
+                    
+                    {% if current_user.instagram_url %}
+                        <a href="{{ current_user.instagram_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/instagram-xxl.png' %}" alt=""></a>
+                    {% endif %}
+        
+                    {% if current_user.facebook_url %}
+                        <a href="{{ current_user.facebook_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/facebook-xxl.png' %}" alt=""></a>
+                    {% endif %}
+        
+                    {% if current_user.twitter_url %}
+                        <a href="{{ current_user.twitter_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/twitter-xxl.png' %}" alt=""></a>
+                    {% endif %}
+        
+                    {% if current_user.linkedin_url %}
+                        <a href="{{ current_user.linkedin_url }}"> <img style="margin: 3px;" width="40px" src="{% static 'images/linkedin-xxl.png' %}" alt=""></a>
+                    {% endif %}
+                </div>
+                <div class="profile-bio">
+                    {% if user.profile.bio %}
+                        <h2 class="sub-header">Bio</h2>
+                        <p class="bio"><strong>{{ current_user.bio }}</strong></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div style="border: 1px dimgrey solid; background-color: dimgrey;" class="profile-right">
+            <div style="padding: 10px;  border: 1px dimgrey solid; background-color: dimgrey; " class="headlines">
+                <h2 class="sub-header">Latest News</h2>
+                <small >Brought to you by </small><a href="https://news.google.com/topstories?hl=en-US&gl=US&ceid=US:en"><img style="margin-left: 5px; padding-top: 3px;" width="90px" src="{% static 'images/Google_News.webp' %}" alt=""></a>
+                <hr>
+                <ul style="text-align: justify;">
+                    <li class="news-item"><a href="https://www.nytimes.com/live/2022/04/12/nyregion/brooklyn-subway-shooting"><small>Police Search for Gunman in Attack on Brooklyn Subway...</small></a></li>
+                    <li class="news-item"><a href="https://www.cnn.com/2022/04/12/politics/biden-iowa-genocide/index.html"><small>Biden calls atrocities in Ukraine a 'genocide' for the first time</small></a></li>
+                    <li class="news-item"><a href="https://www.politico.com/news/2022/04/12/biden-admin-russia-chemical-weapons-00024709"><small>Team Biden scrambles to respond to claims of Russia chemical weapon use</small></a></li>
+                    <li class="news-item"><a href="https://www.washingtonpost.com/world/2022/04/12/partygate-fines-downing-street/"><small>Boris Johnson, wife and chancellor among those fined for Downing Street...</small></a></li>
+                    <li class="news-item"><a href="https://www.espn.com/nba/insider/insider/story/_/id/33719050/lessons-brooklyn-nets-controversy-filled-season-superteam-era-over"><small>Lessons from the Brooklyn Nets' controversy-filled season: Is the Superteam Era over?</small></a></li>
+                </ul>
+                <button class="btn-sm-g">+</button>
+            </div>
+            <hr>
+            <div style="padding: 10px; align-items: center; border: 1px dimgrey solid; background-color: dimgrey; justify-content: center;" class="weather">
+                <h2 class="sub-header">Your Weather</h2>
+                <small >Brought to you by </small><a href="https://weather.com/"><img style="margin-left: 5px; padding-top: 3px;" width="45px" src="{% static 'images/weather_channel.webp' %}" alt=""></a>
+                <hr>
+                <ul style="list-style: none;" >
+                    <li>
+                        <p class="">New York City</p>
+                        <div style="align-items: center; justify-content: center; text-align: center; display: flex;" class="weather-item">
+                            <img src="{% static 'images/sunny_s_cloudy.png' %}" alt="sunny_s_cloudy">
+                            <h3 class="sub-header" >H: 69°F | L: 49°F </h3>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="">Los Angeles</p>
+                        <div style="align-items: center; justify-content: center; text-align: center; display: flex;" class="weather-item">
+                            <img src="{% static 'images/sunny.png' %}" alt="sunny_s_cloudy">
+                            <h3 class="sub-header" >H: 69°F | L: 49°F </h3>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="">Paris</p>
+                        <div style="align-items: center; justify-content: center; text-align: center; display: flex;" class="weather-item">
+                            <img src="{% static 'images/sunny.png' %}" alt="sunny_s_cloudy">
+                            <h3 class="sub-header" >H: 61°F | L: 49°F </h3>
+                        </div>
+                    </li>
+                    
+                </ul>
+                <button class="btn-sm-g">+</button>
 
-    <div class="team">
-        <h2 class="sub-header">Your Collaborator Team</h2>
-        {% for c in collaborators %}
-        <ul style="list-style: none;" >
-            <li><a href="{% url 'collaborator_detail' c.id%}" class="event-item-pf">{{ c.name }}</a></li>
-        </ul>
-        {% empty %}
-        <p>No Team Members Yet!</p>
-        {% endfor %}
-        <a href="{% url 'add_collaborator' %}"><button class="btn-add" >Add Event</button></a>
-    </div>
 
+            </div>
+            
+        
+    
+        </div>
+
+
+    </div>
+    
+    
+
+    
 
 
 

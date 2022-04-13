@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy, reverse
@@ -18,7 +19,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import login
 # Custom Forms
-from .forms import AddTaskForm, NewsletterEmailForm, TaskCompleteForm, TaskUpdateForm, RegisterForm, ContactForm
+from .forms import AddTaskForm, EditAccountForm, NewsletterEmailForm, TaskCompleteForm, TaskUpdateForm, RegisterForm, ContactForm
 
 # Create your views here.
 
@@ -36,7 +37,7 @@ class Login(LoginView):
 class Register(FormView):
     template_name = 'register.html'
     form_class = RegisterForm
-    success_url = reverse_lazy('calendar')
+    success_url = reverse_lazy('create_profile')
 
     # form validation
     def form_valid(self, form):
@@ -69,6 +70,19 @@ class ProfileView(DetailView):
         context['collaborators'] = collaborators
         return context
 
+class ProfileCreate(LoginRequiredMixin, CreateView):
+    model = Profile
+    template_name = 'create_profile.html'
+    fields = ['bio', 'profile_pic', 'website_url', 'instagram_url', 'twitter_url', 'linkedin_url']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ProfileCreate, self).form_valid(form)
+
+    def get_success_url(self, *args):
+        return reverse("profile", args=(str(self.request.user.id)))
+
+
 class EditProfileView(LoginRequiredMixin, UpdateView):
     model = Profile
     template_name = 'edit_profile.html'
@@ -82,7 +96,7 @@ class EditProfileView(LoginRequiredMixin, UpdateView):
 
 # EDIT USER ACCOUNT INFO VIEW
 class EditAccountView(LoginRequiredMixin, UpdateView):
-    form_class = UserChangeForm
+    form_class = EditAccountForm
     template_name = 'edit_account.html'
     # success_url = reverse_lazy('profile')
     

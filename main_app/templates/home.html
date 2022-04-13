@@ -12,7 +12,7 @@ Planify | Home Page
         </div>
         <div class="newsletter">
             <h3 class="sub-header">Subscribe to Our Newsletter</h3>
-            <p>As you can see, Planify is continuosly being developed. To learn more about new features, patches, and app updates - be sure to subscribe below!</p>
+            <span style="font-weight: 600;" >As you can see, Planify is continuosly being developed. To learn more about new features,<br> patches, and app updates - be sure to subscribe below!</span>
             {% if messages %}
             <div class="messages">
                 {% for message in messages %}
@@ -20,16 +20,22 @@ Planify | Home Page
                 {% endfor %}
             </div>
             {% endif %}
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit" class="btn-one">Subscribe</button>
-            </form>
+            <div class="form-left">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_table }}
+                    <button type="submit" class="btn-one">Subscribe</button>
+                </form>
+            </div>
+            
         </div>
     </div>
-
+    <br><br><br><br>
     <div class="home-lower">
-
+        <h2>What is Planify?</h2>
+        <p style="font-weight: 600;">At its core, Planify is a simply productivity app, designed to help users keep track of daily events, projects, reminders, and more! More than just a To-Do List, Planify allows you to create events, which can be displayed on both a calendar and list view. From your list view, the event takes on a life of its own, and users can add specific tasks that might be a part of that event, steps needed to complete that event, and even add individuals who will take part in the event known as 'Collaborators'. We hope to grow Planify into more than just an event calendar. In future iterations, we would like for it to function as a user's Dashboard to the internet, where they can use their profile to check the latest news headlines, from specific areas they are interested in, view their local weather, check their social feeds, and much more. In addition, the projects or events will soon include a 'Kanban-Like' environment, where users can collaborate and plan projects just as well as they would with other applications specifically designed for such a use. While such a feature might be targeted more so towards developers, we hope to introduce such features to everday users and show them how such features might prove valuable in everyday life.</p>
+        <h3>A Work in Progress!</h3>
+        <span style="font-weight: 600;">Planify is a work in progress, and in the next releases, we are planning to completely revamp the appearance and add a number of different functionalities. Be sure to sign up for the newsletter to learn more and get updates on the app!</span>
     </div>
     
 

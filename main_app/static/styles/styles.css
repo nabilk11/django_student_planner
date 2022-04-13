@@ -281,7 +281,7 @@ nav .nav-link:hover, .dropdown:hover .drop-link {
     display: none;
 }
 
-.helptext {
+.form-group .helptext {
     font-size: .6rem;
     display: none;
 }
@@ -473,6 +473,38 @@ footer {
 
 /* PROFILE PAGE STYLING */
 
+.profile-lower {
+    display: flex;
+}
+
+.profile-upper {
+    text-align: center;
+    background-color:lightgoldenrodyellow;
+    padding: 3rem;
+    
+}
+
+
+
+.profile-left {
+    flex: 4;
+    text-align: center;
+}
+
+.profile-center {
+    flex: 4;
+    text-align: center;
+}
+
+.profile-right {
+    flex: 4;
+    text-align: center;
+}
+
+.profile-page {
+    border-radius: 12px;
+}
+
 
 
 
@@ -489,10 +521,67 @@ footer {
     
 }
 
-input[type=text], input[type=email], textarea {
+.form-two input[type=text], .form-two input[type=email], .form-two input[type=url],
+input[name=title], textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
    }
 
+input[type=file] {
+    color: royalblue;
+}
+
+input[type=file] button { 
+    background-color: royalblue;
+
+
+}
+
+/* EDIT ACCOUNT/PROFILE PAGE */
+
+.edit-account .helptext, 
+.edit-account form p:nth-child(7) label,
+.edit-account #id_password,
+#id_user_permissions,
+label[for=id_user_permissions],
+#id_groups,
+label[for=id_groups] {
+    display: none;
+}
+
+
+.form-two {
+    margin: auto;
+    text-align: left;
+    width: 40vw;
+    margin-top: 6vh;
+}
+
+.form-left {
+    
+    width: 25vw;
+    margin-top: 2vh;
+
+}
+
+.sub-text {
+    padding-bottom: 5vh;
+}
+
+.update-form{
+    list-style: none;
+}
+
+.home-upper {
+    background-image: url("../images/clock_slider.jpeg");
+    color: royalblue;
+    padding: 35px;
+}
+
+.home-lower {
+    background-image: url("../images/darkclock.jpeg");
+    padding: 35px;
+
+}
