@@ -74,13 +74,15 @@ class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
     template_name = 'create_profile.html'
     fields = ['bio', 'profile_pic', 'website_url', 'instagram_url', 'twitter_url', 'linkedin_url']
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(ProfileCreate, self).form_valid(form)
 
-    def get_success_url(self, *args):
-        return reverse("profile", args=(str(self.request.user.id)))
+    # def get_success_url(self, *args):
+    #     return reverse("profile", args=(str(self.request.user.id)))
+# need to fix the above so it goes to profile first
 
 
 class EditProfileView(LoginRequiredMixin, UpdateView):
